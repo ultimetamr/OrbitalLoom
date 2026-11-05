@@ -1,0 +1,6 @@
+{
+  "name": "OrbitalLoom.Runtime",
+  "rootNamespace": "OrbitalLoom",
+  "references": ["Unity.InputSystem"],
+  "autoReferenced": true
+}
