@@ -12,7 +12,7 @@
 
 ## 获取与打开
 
-1. 使用具有组织仓库权限的 GitHub 账号登录；本仓库为私有库，未获授权时链接可能显示 404。
+1. 本仓库为公开仓库，可直接访问或克隆，无需登录 GitHub。
 2. 克隆本仓库，使用 Unity Hub 添加克隆目录，以指定的 Unity 版本打开。
 3. 安装该 Unity 版本对应的 Android Build Support、SDK/NDK 和 OpenJDK，等待首次导入及 Unity 注册表依赖解析。
 4. 打开启动场景，通过 Unity Test Runner 的 EditMode 页运行测试；Android 构建入口为 Unity 的 Build Settings。
