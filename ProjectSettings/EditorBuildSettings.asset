@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OrbitalLoom.unity
+    guid: db73cd7d368b72c4986289815fb58282
+  m_configObjects:
+    ByteDance.PICO.XR.Settings: {fileID: 11400000, guid: 949c680f72bb2eb42ac60654ffb47c8f, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6314405d906b8264bac1200433904bf0, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: dd9dbb5d5c6b0d744ad2a9d549e31736, type: 2}

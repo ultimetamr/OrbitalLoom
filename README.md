@@ -1,5 +1,9 @@
 # Orbital Loom 星轨织机 · Vibe Lab 资料包
 
+> 当前分支 `unity-2022-baseline` 是0.9.8开发源工程备份，包含Assets、Packages、ProjectSettings与Tools；用Unity2022.3.62f3c1及对应Android工具链打开。`main`分支为发布资料。两个分支都不是Unity6正式Gradle提交工程，不能用当前commit直接通过Vibe Lab云构建。
+
+> 源码包含原有第三方SDK及其许可证；各依赖遵循自身授权。本仓库未给第三方SDK重新授予许可证。未包含Library、Temp、账号凭据、用户存档或本机签名文件。
+
 整理日期：2026-11-05。基于当前0.9.8/code25、24关版本。这里是发布文案、宣传美术和技术交付资料，**不是已通过平台验证的Gradle构建工程**。
 
 沿用既有GitHub组织ultimetamr，专用私有仓库：https://github.com/ultimetamr/OrbitalLoom 。其他应用仓库未改动。

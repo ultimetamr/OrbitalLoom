@@ -1,0 +1,9 @@
+<linker>
+  <!-- JSON models are constructed and populated through reflection in IL2CPP. -->
+  <assembly fullname="OrbitalLoom.Runtime">
+    <namespace fullname="OrbitalLoom.Data" preserve="all" />
+    <namespace fullname="OrbitalLoom.Core" preserve="all" />
+    <namespace fullname="OrbitalLoom.Gameplay" preserve="all" />
+  </assembly>
+  <assembly fullname="Newtonsoft.Json" preserve="all" />
+</linker>

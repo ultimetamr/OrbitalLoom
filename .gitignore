@@ -1,4 +1,14 @@
 /local-testing/
+/Library/
+/Temp/
+/Logs/
+/UserSettings/
+/Builds/
+/.vs/
+/.idea/
+*.csproj
+*.sln
+*.slnx
 /GITHUB-DELIVERY.json
 /FILE-MANIFEST.json
 *.keystore

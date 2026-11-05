@@ -1,0 +1,7 @@
+{
+  "name": "OrbitalLoom.Tests.EditMode",
+  "references": ["OrbitalLoom.Runtime"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

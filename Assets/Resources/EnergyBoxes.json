@@ -1,0 +1,5784 @@
+{
+  "version": 3,
+  "levels": [
+    {
+      "id": "box_01",
+      "title": "第一道弯",
+      "lesson": "点插槽 A → 装转向件 → 选通往终点的出口 → 开始",
+      "turns": 1,
+      "splitters": 0,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.62,
+          "y": 0.08,
+          "z": 0,
+          "units": 1,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.15,
+          "y": 0.08,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "向下 · 断口",
+              "outputs": [
+                "d"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "向右上 · 终点",
+              "outputs": [
+                "g"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.4,
+          "y": 0.28,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "d",
+          "kind": "blocked",
+          "title": "封闭断口",
+          "x": 0.26,
+          "y": -0.2,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        }
+      ],
+      "reference": [
+        2
+      ],
+      "hints": [
+        "先看终点的入口导轨，它只通向插槽 A。",
+        "转向件的亮色箭头表示当前出口；灰色轨道只是可选方向。",
+        "在 A 安装转向件，再切到“向右上 · 终点”。"
+      ],
+      "curriculum": "入门实验",
+      "objective": "把一次出口变化与光的实际去向对应起来。",
+      "question": "这条出口真的通向目标，还是封闭断口？"
+    },
+    {
+      "id": "box_02",
+      "title": "一分为二",
+      "lesson": "一件等分器，必须同时点亮两个一格终点",
+      "turns": 0,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.62,
+          "y": 0,
+          "z": 0,
+          "units": 2,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.12,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "上下各一格",
+              "outputs": [
+                "g1",
+                "g2"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "只送上方",
+              "outputs": [
+                "g1"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "只送下方",
+              "outputs": [
+                "g2"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.45,
+          "y": 0.26,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.45,
+          "y": -0.22,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        }
+      ],
+      "reference": [
+        1
+      ],
+      "hints": [
+        "两个终点都只需要 1 格，能源一共 2 格。",
+        "转向只改变方向，不减少能量；这里要等分。",
+        "在 A 安装等分件，让两个出口分别通往上下终点。"
+      ],
+      "curriculum": "规则学习",
+      "objective": "用一次等分满足两个目标，确认能量守恒。",
+      "question": "两个目标各要多少格，分流前一共有多少？"
+    },
+    {
+      "id": "box_03",
+      "title": "月印之门",
+      "lesson": "先点蓝色终点读锁印，再找紫色检查点；光会按经过顺序记下符文。",
+      "turns": 1,
+      "splitters": 2,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.7,
+          "y": 0.1,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.32,
+          "y": 0.1,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "上路保留 · 下路再分",
+              "outputs": [
+                "g2",
+                "b"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "先送一格目标",
+              "outputs": [
+                "g1",
+                "b"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部送入 B",
+              "outputs": [
+                "b"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": 0.04,
+          "y": -0.16,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "经前方印记台",
+              "outputs": [
+                "rm",
+                "g3"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "经后方印记台",
+              "outputs": [
+                "rs",
+                "g3"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部送二格目标",
+              "outputs": [
+                "g2"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.36,
+          "y": 0.32,
+          "z": 0,
+          "units": 2,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.68,
+          "y": 0.04,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        },
+        {
+          "id": "g3",
+          "kind": "goal",
+          "title": "终点 Ⅲ",
+          "x": 0.44,
+          "y": -0.31,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rm",
+          "kind": "relay",
+          "title": "前方印记台",
+          "x": 0.31,
+          "y": 0.02,
+          "z": -0.3,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "rs",
+          "kind": "relay",
+          "title": "后方印记台",
+          "x": 0.32,
+          "y": -0.15,
+          "z": 0.32,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        }
+      ],
+      "reference": [
+        1,
+        1
+      ],
+      "hints": [
+        "先点击带锁的终点，比较它要的符文与两个紫色检查点。",
+        "能量正确还不够。二格目标保留一半；另一半等分，其中一路必须先经过月印。",
+        "A 保留二格并送 B；B 走前方月印台与下方终点。"
+      ],
+      "curriculum": "动手教学",
+      "objective": "先读锁印，再亲手选择带正确印记的路线。",
+      "question": "能量够了，为什么有的终点仍打不开？"
+    },
+    {
+      "id": "box_04",
+      "title": "颠倒的锁印",
+      "lesson": "相同的两个印记，顺序不同也打不开门。先倒读终点，再沿导轨找顺序。",
+      "turns": 1,
+      "splitters": 2,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.7,
+          "y": 0.08,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.38,
+          "y": 0.08,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "上方短路口 ＋ B",
+              "outputs": [
+                "j",
+                "b"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "上方短路口 ＋ C",
+              "outputs": [
+                "j",
+                "c"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B ＋ C",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "j",
+          "kind": "relay",
+          "title": "共享短路口",
+          "x": -0.02,
+          "y": 0.32,
+          "z": 0,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.03,
+          "y": -0.13,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "走上方近路",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "前层串联通道",
+              "outputs": [
+                "r1",
+                "c"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "短路口 ＋ C",
+              "outputs": [
+                "j",
+                "c"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "后层串联通道",
+              "outputs": [
+                "q1",
+                "c"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": 0.31,
+          "y": -0.16,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "送下方终点",
+              "outputs": [
+                "g3"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "送右方终点",
+              "outputs": [
+                "g1"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.4,
+          "y": 0.32,
+          "z": 0,
+          "units": 2,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.74,
+          "y": 0.05,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月星"
+        },
+        {
+          "id": "g3",
+          "kind": "goal",
+          "title": "终点 Ⅲ",
+          "x": 0.62,
+          "y": -0.32,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "r1",
+          "kind": "relay",
+          "title": "前层印记一",
+          "x": 0.12,
+          "y": 0.02,
+          "z": -0.32,
+          "units": 0,
+          "outputs": [
+            "r2"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "r2",
+          "kind": "relay",
+          "title": "前层印记二",
+          "x": 0.43,
+          "y": 0.12,
+          "z": -0.32,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "q1",
+          "kind": "relay",
+          "title": "后层印记一",
+          "x": 0.13,
+          "y": -0.34,
+          "z": 0.32,
+          "units": 0,
+          "outputs": [
+            "q2"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "q2",
+          "kind": "relay",
+          "title": "后层印记二",
+          "x": 0.47,
+          "y": -0.31,
+          "z": 0.32,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        }
+      ],
+      "reference": [
+        1,
+        2,
+        1
+      ],
+      "hints": [
+        "两条印记路的能量都一样，目标却只接受一种先后顺序。",
+        "终点要求月→星。转动视角，沿箭头确认每条串联路先遇到什么。",
+        "A 分向短路口与 B；B 选择前层串联通道与 C；C 送下方终点。"
+      ],
+      "curriculum": "迁移挑战",
+      "objective": "把顺序和能量同时作为条件，从锁印倒推。",
+      "question": "同样两个符文，经过顺序不同会怎样？"
+    },
+    {
+      "id": "box_05",
+      "title": "背面的真相",
+      "lesson": "读清前后层的符文顺序；给没有备用出口的支路留下通道。",
+      "turns": 2,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.72,
+          "y": 0.02,
+          "z": 0,
+          "units": 2,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.42,
+          "y": 0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "分向 B 与 C",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部走 B",
+              "outputs": [
+                "b"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.12,
+          "y": 0.19,
+          "z": -0.08,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "后方共享通道",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "前方上层桥",
+              "outputs": [
+                "h"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "后层印记桥",
+              "outputs": [
+                "hy"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.08,
+          "y": -0.22,
+          "z": 0.14,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "后方共享通道",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "封闭断口",
+              "outputs": [
+                "d"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "h",
+          "kind": "relay",
+          "title": "上层桥",
+          "x": 0.1,
+          "y": 0.36,
+          "z": -0.34,
+          "units": 0,
+          "outputs": [
+            "hx"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "j",
+          "kind": "relay",
+          "title": "后方接点",
+          "x": 0.23,
+          "y": -0.08,
+          "z": 0.28,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.61,
+          "y": 0.22,
+          "z": -0.31,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月星"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.62,
+          "y": -0.24,
+          "z": 0.28,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日"
+        },
+        {
+          "id": "d",
+          "kind": "blocked",
+          "title": "封闭断口",
+          "x": -0.22,
+          "y": -0.38,
+          "z": 0.24,
+          "units": 0,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "hx",
+          "kind": "relay",
+          "title": "前层第二印",
+          "x": 0.39,
+          "y": 0.35,
+          "z": -0.34,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "hy",
+          "kind": "relay",
+          "title": "后层第一印",
+          "x": 0.1,
+          "y": 0.3,
+          "z": 0.32,
+          "units": 0,
+          "outputs": [
+            "hz"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "hz",
+          "kind": "relay",
+          "title": "后层第二印",
+          "x": 0.4,
+          "y": 0.22,
+          "z": 0.32,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        }
+      ],
+      "reference": [
+        1,
+        2,
+        1
+      ],
+      "hints": [
+        "点两个终点分别读锁印；上方有两条供能相同的桥。",
+        "下方目标要日印，只能从后方接点走；上方目标要先月后星。",
+        "A 等分；B 走前方上层桥（月→星），C 经过后方日印接点。"
+      ],
+      "curriculum": "空间辨认",
+      "objective": "区分前后层与共用接点，给必要支路留路。",
+      "question": "投影交叉处真的是同一个接点吗？"
+    },
+    {
+      "id": "box_06",
+      "title": "双锁星匣",
+      "lesson": "同时满足能量、锁印先后和通道独占；先从最受限制的终点倒推。",
+      "turns": 3,
+      "splitters": 2,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.78,
+          "y": 0.02,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.49,
+          "y": 0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "B ＋ C",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B ＋ D",
+              "outputs": [
+                "b",
+                "d"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部走 C",
+              "outputs": [
+                "c"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.18,
+          "y": 0.28,
+          "z": 0.1,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "二格专用通道",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "一格终点近路",
+              "outputs": [
+                "g1"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "后层逆序通道",
+              "outputs": [
+                "by"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.18,
+          "y": -0.23,
+          "z": -0.16,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "占用二格通道",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "D ＋ E",
+              "outputs": [
+                "d",
+                "e"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "共享通道 ＋ E",
+              "outputs": [
+                "j",
+                "e"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "d",
+          "kind": "socket",
+          "title": "插槽 D",
+          "x": 0.18,
+          "y": 0.06,
+          "z": -0.3,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "前层单印路",
+              "outputs": [
+                "dr"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "共享通道",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "前层双印路",
+              "outputs": [
+                "dx"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "e",
+          "kind": "socket",
+          "title": "插槽 E",
+          "x": 0.23,
+          "y": -0.29,
+          "z": 0.14,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "下方印记路",
+              "outputs": [
+                "er"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "共享通道",
+              "outputs": [
+                "j"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "j",
+          "kind": "relay",
+          "title": "共享通道",
+          "x": 0.08,
+          "y": 0.34,
+          "z": 0.28,
+          "units": 0,
+          "outputs": [
+            "jx"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.76,
+          "y": 0.34,
+          "z": 0.28,
+          "units": 2,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月星"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.76,
+          "y": 0.02,
+          "z": -0.3,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日"
+        },
+        {
+          "id": "g3",
+          "kind": "goal",
+          "title": "终点 Ⅲ",
+          "x": 0.68,
+          "y": -0.29,
+          "z": 0.14,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        },
+        {
+          "id": "jx",
+          "kind": "relay",
+          "title": "二格第二印",
+          "x": 0.41,
+          "y": 0.36,
+          "z": 0.28,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "by",
+          "kind": "relay",
+          "title": "后层第一印",
+          "x": 0.03,
+          "y": 0.12,
+          "z": 0.42,
+          "units": 0,
+          "outputs": [
+            "bz"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "bz",
+          "kind": "relay",
+          "title": "后层第二印",
+          "x": 0.39,
+          "y": 0.13,
+          "z": 0.42,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "dr",
+          "kind": "relay",
+          "title": "前层单印",
+          "x": 0.46,
+          "y": 0.02,
+          "z": -0.3,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "dx",
+          "kind": "relay",
+          "title": "前层双印入口",
+          "x": 0.18,
+          "y": -0.08,
+          "z": -0.44,
+          "units": 0,
+          "outputs": [
+            "dr"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "er",
+          "kind": "relay",
+          "title": "下方印记",
+          "x": 0.45,
+          "y": -0.32,
+          "z": 0.14,
+          "units": 0,
+          "outputs": [
+            "g3"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        }
+      ],
+      "reference": [
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      "hints": [
+        "先看二格锁与日印锁：分别要求月→星和只有一个日印，多印也会拒绝。",
+        "完整的二格必须留在 B；C 分出的两格分别走 D、E。B 的后层路顺序相反，D 的双印路多了月。",
+        "A 分 B、C；B 走月→星二格通道；C 分 D、E；D 选前层单印路，E 走下方星印。"
+      ],
+      "curriculum": "综合检验",
+      "objective": "同时规划库存、分流位置和符文顺序。",
+      "question": "哪一个目标最缺少替代路线？"
+    },
+    {
+      "id": "box_07",
+      "title": "守门的月光",
+      "lesson": "先读条件门；完整印记吻合才可通过。",
+      "turns": 1,
+      "splitters": 0,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.7,
+          "y": 0,
+          "z": 0,
+          "units": 1,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.38,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "经过星印",
+              "outputs": [
+                "rs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "经过月印",
+              "outputs": [
+                "rm"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rs",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.04,
+          "y": 0.25,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [
+            "door"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "rm",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.04,
+          "y": -0.23,
+          "z": 0.2,
+          "units": 0,
+          "outputs": [
+            "door"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "door",
+          "kind": "relay",
+          "title": "月门",
+          "x": 0.31,
+          "y": 0.03,
+          "z": 0,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "月"
+        },
+        {
+          "id": "g",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.7,
+          "y": 0.1,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        }
+      ],
+      "reference": [
+        2
+      ],
+      "hints": [
+        "条件门检查整串符文；先看门要什么。",
+        "月门要月印，星印即使能量正确也会被挡住。",
+        "选择月印路线。"
+      ],
+      "tutorial": "gate",
+      "tutorialNode": "door",
+      "tutorialSocket": "a",
+      "curriculum": "规则学习",
+      "objective": "理解条件门检查完整印记，亲手送光验证。",
+      "question": "门检查的是最后一枚，还是整串？"
+    },
+    {
+      "id": "box_08",
+      "title": "分岔的通行证",
+      "lesson": "两个门各认一种印记。先等分，再决定每一路经过什么。",
+      "turns": 2,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.74,
+          "y": 0,
+          "z": 0,
+          "units": 2,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.48,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "分给 B 与 C",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部给 B",
+              "outputs": [
+                "b"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.2,
+          "y": 0.27,
+          "z": -0.12,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "上路星印",
+              "outputs": [
+                "bs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "上路月印",
+              "outputs": [
+                "bm"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.2,
+          "y": -0.25,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "下路星印",
+              "outputs": [
+                "cs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "下路月印",
+              "outputs": [
+                "cm"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "bs",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.06,
+          "y": 0.36,
+          "z": -0.3,
+          "units": 0,
+          "outputs": [
+            "db"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "bm",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.06,
+          "y": 0.15,
+          "z": -0.12,
+          "units": 0,
+          "outputs": [
+            "db"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "cs",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.07,
+          "y": -0.14,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [
+            "dc"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "cm",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.07,
+          "y": -0.36,
+          "z": 0.3,
+          "units": 0,
+          "outputs": [
+            "dc"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "db",
+          "kind": "relay",
+          "title": "月门",
+          "x": 0.39,
+          "y": 0.27,
+          "z": -0.12,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "月"
+        },
+        {
+          "id": "dc",
+          "kind": "relay",
+          "title": "星门",
+          "x": 0.39,
+          "y": -0.25,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "星"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.74,
+          "y": 0.27,
+          "z": -0.12,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.74,
+          "y": -0.25,
+          "z": 0.12,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        }
+      ],
+      "reference": [
+        1,
+        2,
+        1
+      ],
+      "hints": [
+        "两个门要求不同，不能在分流前盖同一个印。",
+        "A 分为两路；B 留月，C 留星。",
+        "沿月门和星门分别倒推。"
+      ],
+      "curriculum": "迁移挑战",
+      "objective": "分别给两条支路准备通行印记。",
+      "question": "分流以后，哪一段会改变各自的印记？"
+    },
+    {
+      "id": "box_09",
+      "title": "借月换星",
+      "lesson": "能源已经带月印；终点却要星印。留意换印器。",
+      "turns": 1,
+      "splitters": 0,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.73,
+          "y": 0,
+          "z": 0,
+          "units": 1,
+          "outputs": [
+            "rm"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rm",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.46,
+          "y": 0.09,
+          "z": -0.1,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.12,
+          "y": 0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "直接送终点",
+              "outputs": [
+                "g"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "经过换印器",
+              "outputs": [
+                "cv"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "cv",
+          "kind": "relay",
+          "title": "换印器",
+          "x": 0.24,
+          "y": -0.25,
+          "z": 0.2,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "月",
+          "swapTo": "星"
+        },
+        {
+          "id": "g",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.68,
+          "y": 0.1,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        }
+      ],
+      "reference": [
+        2
+      ],
+      "hints": [
+        "追加星印会变月→星，仍不等于只有星。",
+        "换印器可以替换末印，不会追加一个印。",
+        "选择经过换印器的出口。"
+      ],
+      "tutorial": "swap",
+      "tutorialNode": "cv",
+      "tutorialSocket": "a",
+      "curriculum": "规则学习",
+      "objective": "观察末印替换前后的实际结果。",
+      "question": "换印以后，前面的印记会保留吗？"
+    },
+    {
+      "id": "box_10",
+      "title": "保留的前印",
+      "lesson": "换印只动末尾，先后顺序决定能否过门。",
+      "turns": 2,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.77,
+          "y": 0.02,
+          "z": 0,
+          "units": 2,
+          "outputs": [
+            "rd"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rd",
+          "kind": "relay",
+          "title": "日印",
+          "x": -0.55,
+          "y": 0.1,
+          "z": 0,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.32,
+          "y": 0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "分给 B 与 C",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部送 B",
+              "outputs": [
+                "b"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.08,
+          "y": 0.26,
+          "z": -0.2,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "先追加星印",
+              "outputs": [
+                "bs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "先替换日印",
+              "outputs": [
+                "cv"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "cv",
+          "kind": "relay",
+          "title": "日换月",
+          "x": 0.15,
+          "y": 0.27,
+          "z": -0.2,
+          "units": 0,
+          "outputs": [
+            "door"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "日",
+          "swapTo": "月"
+        },
+        {
+          "id": "door",
+          "kind": "relay",
+          "title": "月门",
+          "x": 0.37,
+          "y": 0.27,
+          "z": -0.2,
+          "units": 0,
+          "outputs": [
+            "bs"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "月"
+        },
+        {
+          "id": "bs",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.58,
+          "y": 0.27,
+          "z": -0.2,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.8,
+          "y": 0.28,
+          "z": -0.2,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月星"
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.08,
+          "y": -0.22,
+          "z": 0.2,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "直接送星锁",
+              "outputs": [
+                "g2"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "替换末印",
+              "outputs": [
+                "cx"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "cx",
+          "kind": "relay",
+          "title": "日换星",
+          "x": 0.29,
+          "y": -0.22,
+          "z": 0.2,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "日",
+          "swapTo": "星"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.75,
+          "y": -0.22,
+          "z": 0.2,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        }
+      ],
+      "reference": [
+        1,
+        2,
+        2
+      ],
+      "hints": [
+        "先替换还是先追加，会留下不同的整串印记。",
+        "上路必须先日换月，过月门后才加星；下路只需星。",
+        "分别检查 B、C 的换印出口。"
+      ],
+      "curriculum": "加工推理",
+      "objective": "比较加工发生在路线不同位置时的结果。",
+      "question": "先追加再替换，与先替换再追加相同吗？"
+    },
+    {
+      "id": "box_11",
+      "title": "牵一处动两处",
+      "lesson": "B、C 成对联动，改变一处会同时改变另一处。",
+      "turns": 2,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.75,
+          "y": 0,
+          "z": 0,
+          "units": 2,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.49,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "分给 B 与 C",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部走 B",
+              "outputs": [
+                "b"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.22,
+          "y": 0.25,
+          "z": -0.12,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "B：星印",
+              "outputs": [
+                "bs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "B：月印",
+              "outputs": [
+                "bm"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "B：日印",
+              "outputs": [
+                "bd"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.22,
+          "y": -0.25,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "C：星印",
+              "outputs": [
+                "cs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "C：日印",
+              "outputs": [
+                "cd"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "C：月印",
+              "outputs": [
+                "cm"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "bs",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.04,
+          "y": 0.39,
+          "z": -0.25,
+          "units": 0,
+          "outputs": [
+            "db"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "bm",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.04,
+          "y": 0.23,
+          "z": -0.12,
+          "units": 0,
+          "outputs": [
+            "db"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "bd",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.04,
+          "y": 0.09,
+          "z": 0.03,
+          "units": 0,
+          "outputs": [
+            "db"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "cs",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.06,
+          "y": -0.1,
+          "z": -0.03,
+          "units": 0,
+          "outputs": [
+            "dc"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "cd",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.06,
+          "y": -0.25,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [
+            "dc"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "cm",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.06,
+          "y": -0.37,
+          "z": 0.25,
+          "units": 0,
+          "outputs": [
+            "dc"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "db",
+          "kind": "relay",
+          "title": "月门",
+          "x": 0.39,
+          "y": 0.25,
+          "z": -0.12,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "月"
+        },
+        {
+          "id": "dc",
+          "kind": "relay",
+          "title": "星门",
+          "x": 0.39,
+          "y": -0.25,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "星"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.75,
+          "y": 0.25,
+          "z": -0.12,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.75,
+          "y": -0.25,
+          "z": 0.12,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        }
+      ],
+      "reference": [
+        1,
+        2,
+        1
+      ],
+      "hints": [
+        "不能逐路独立调好，B、C 的出口是成对变化的。",
+        "从月门倒推 B，再检查它同步带动的 C 是否走星印。",
+        "把 B 调到月印；同步后的 C 应走星印。"
+      ],
+      "tutorial": "link",
+      "tutorialNode": "b",
+      "tutorialSocket": "b",
+      "links": [
+        {
+          "a": "b",
+          "b": "c",
+          "map": [
+            0,
+            3,
+            1,
+            2
+          ]
+        }
+      ],
+      "curriculum": "规则学习",
+      "objective": "操作一组联动插槽，观察两处同时变化。",
+      "question": "一边调整时，另一条路线会付出什么代价？"
+    },
+    {
+      "id": "box_12",
+      "title": "三钥星匣",
+      "lesson": "完整二格要换印过门；另两格由联动双路分别解锁。",
+      "turns": 3,
+      "splitters": 2,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.78,
+          "y": 0.02,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.52,
+          "y": 0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "保留上路二格",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "提前送一格路",
+              "outputs": [
+                "b",
+                "d"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部送下路",
+              "outputs": [
+                "c"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.26,
+          "y": 0.29,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "星印近路",
+              "outputs": [
+                "bs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "月印换星",
+              "outputs": [
+                "bm"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "bm",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.01,
+          "y": 0.32,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [
+            "cv"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "bs",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.03,
+          "y": 0.13,
+          "z": -0.4,
+          "units": 0,
+          "outputs": [
+            "cv"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "cv",
+          "kind": "relay",
+          "title": "月换星",
+          "x": 0.25,
+          "y": 0.31,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [
+            "door"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "月",
+          "swapTo": "星"
+        },
+        {
+          "id": "door",
+          "kind": "relay",
+          "title": "星门",
+          "x": 0.49,
+          "y": 0.31,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "星"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.78,
+          "y": 0.32,
+          "z": -0.22,
+          "units": 2,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.27,
+          "y": -0.25,
+          "z": 0.18,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "分给 D 与 E",
+              "outputs": [
+                "d",
+                "e"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "占用上路",
+              "outputs": [
+                "b"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "d",
+          "kind": "socket",
+          "title": "插槽 D",
+          "x": -0.03,
+          "y": -0.05,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "D：月印",
+              "outputs": [
+                "dm"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "D：日印",
+              "outputs": [
+                "dd"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "e",
+          "kind": "socket",
+          "title": "插槽 E",
+          "x": -0.03,
+          "y": -0.33,
+          "z": 0.3,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "E：月印",
+              "outputs": [
+                "em"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "E：日印",
+              "outputs": [
+                "ed"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "dm",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.22,
+          "y": 0.04,
+          "z": 0.04,
+          "units": 0,
+          "outputs": [
+            "dg"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "dd",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.23,
+          "y": -0.14,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [
+            "dg"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "dg",
+          "kind": "relay",
+          "title": "日门",
+          "x": 0.49,
+          "y": -0.03,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "日"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.79,
+          "y": -0.02,
+          "z": 0.12,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日"
+        },
+        {
+          "id": "em",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.29,
+          "y": -0.24,
+          "z": 0.3,
+          "units": 0,
+          "outputs": [
+            "g3"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "ed",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.24,
+          "y": -0.37,
+          "z": 0.43,
+          "units": 0,
+          "outputs": [
+            "g3"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "g3",
+          "kind": "goal",
+          "title": "终点 Ⅲ",
+          "x": 0.77,
+          "y": -0.34,
+          "z": 0.3,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        }
+      ],
+      "reference": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "hints": [
+        "二格目标不能经过两次等分；换印器只接收末印月。",
+        "B 的星印近路会被换印器拒绝；D、E 的配对要同时满足日锁与月锁。",
+        "保留 B 二格走月换星；C 等分，再把 D 调日印、E 调月印。"
+      ],
+      "links": [
+        {
+          "a": "d",
+          "b": "e",
+          "map": [
+            0,
+            2,
+            1
+          ]
+        }
+      ],
+      "curriculum": "综合检验",
+      "objective": "让同一次联动同时满足两条路径。",
+      "question": "怎样先固定最没有余地的一条支路？"
+    },
+    {
+      "id": "box_13",
+      "title": "偏光天平",
+      "lesson": "棱镜按标记分配，不一定均分；从终点所需格数倒推。",
+      "turns": 0,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.66,
+          "y": 0,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "棱镜 A",
+          "x": -0.18,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "上2 / 下2",
+              "outputs": [
+                "g1",
+                "g2"
+              ],
+              "parts": [
+                2,
+                2
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "上3 / 下1",
+              "outputs": [
+                "g1",
+                "g2"
+              ],
+              "parts": [
+                3,
+                1
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "上1 / 下3",
+              "outputs": [
+                "g1",
+                "g2"
+              ],
+              "parts": [
+                1,
+                3
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.48,
+          "y": 0.25,
+          "z": -0.18,
+          "units": 3,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.48,
+          "y": -0.25,
+          "z": 0.18,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        }
+      ],
+      "reference": [
+        2
+      ],
+      "hints": [
+        "两个终点要的格数不同，均分不会成功。",
+        "留意棱镜每个出口的格数，而不是只看方向。",
+        "使用上3、下1。"
+      ],
+      "tutorial": "prism",
+      "tutorialNode": "a",
+      "tutorialSocket": "a",
+      "curriculum": "规则学习",
+      "objective": "区分比例棱镜与均分，按目标需求分光。",
+      "question": "三格目标能靠二加二的均分满足吗？"
+    },
+    {
+      "id": "box_14",
+      "title": "重光的通行证",
+      "lesson": "比例与符文必须一起满足，三格和一格不能互换。",
+      "turns": 2,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.78,
+          "y": 0,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "棱镜 A",
+          "x": -0.49,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "上1 / 下3",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                1,
+                3
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "上3 / 下1",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                3,
+                1
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "均分",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                2,
+                2
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": -0.17,
+          "y": 0.25,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "月印路",
+              "outputs": [
+                "rm"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "星印路",
+              "outputs": [
+                "rs"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.17,
+          "y": -0.24,
+          "z": 0.18,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "星印路",
+              "outputs": [
+                "cs"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "月印路",
+              "outputs": [
+                "cm"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rm",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.12,
+          "y": 0.36,
+          "z": -0.26,
+          "units": 0,
+          "outputs": [
+            "db"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "rs",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.12,
+          "y": 0.15,
+          "z": -0.1,
+          "units": 0,
+          "outputs": [
+            "db"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "cs",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.12,
+          "y": -0.14,
+          "z": 0.1,
+          "units": 0,
+          "outputs": [
+            "dc"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "cm",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.12,
+          "y": -0.36,
+          "z": 0.26,
+          "units": 0,
+          "outputs": [
+            "dc"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "db",
+          "kind": "relay",
+          "title": "月门",
+          "x": 0.42,
+          "y": 0.25,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "月"
+        },
+        {
+          "id": "dc",
+          "kind": "relay",
+          "title": "星门",
+          "x": 0.42,
+          "y": -0.24,
+          "z": 0.18,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "星"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.77,
+          "y": 0.25,
+          "z": -0.18,
+          "units": 3,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.77,
+          "y": -0.24,
+          "z": 0.18,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        }
+      ],
+      "reference": [
+        2,
+        1,
+        1
+      ],
+      "hints": [
+        "先分配格数，再满足两个门。",
+        "三格给上路月锁，一格给下路星锁。",
+        "A上3下1；B月印，C星印。"
+      ],
+      "curriculum": "迁移挑战",
+      "objective": "同时满足上下支路的能量与通行印记。",
+      "question": "比例正确以后，还要检查什么？"
+    },
+    {
+      "id": "box_15",
+      "title": "借位的棱镜",
+      "lesson": "先为星锁保留共道，再对接三维桥臂；投影相邻不代表空间接通。",
+      "turns": 5,
+      "splitters": 2,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.82,
+          "y": 0,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "棱镜 A",
+          "x": -0.55,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "B2 / C2",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                2,
+                2
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B3 / C1",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                3,
+                1
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B1 / C3",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                1,
+                3
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "棱镜 B",
+          "x": -0.26,
+          "y": 0.25,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "均分 D / E",
+              "outputs": [
+                "d",
+                "e"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "D1 / E2",
+              "outputs": [
+                "d",
+                "e"
+              ],
+              "parts": [
+                1,
+                2
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "D2 / E1",
+              "outputs": [
+                "d",
+                "e"
+              ],
+              "parts": [
+                2,
+                1
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": -0.23,
+          "y": -0.26,
+          "z": 0.22,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "后层共道",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "前层月印",
+              "outputs": [
+                "m"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "d",
+          "kind": "socket",
+          "title": "插槽 D",
+          "x": 0.04,
+          "y": 0.35,
+          "z": -0.24,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "后层共道",
+              "outputs": [
+                "j"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "前层月印",
+              "outputs": [
+                "m"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "e",
+          "kind": "socket",
+          "title": "插槽 E",
+          "x": 0.05,
+          "y": 0.05,
+          "z": -0.04,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "中层日印",
+              "outputs": [
+                "u"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "后层共道",
+              "outputs": [
+                "j"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "m",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.32,
+          "y": 0.34,
+          "z": -0.26,
+          "units": 0,
+          "outputs": [
+            "h"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "u",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.39,
+          "y": 0.04,
+          "z": -0.02,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "j",
+          "kind": "relay",
+          "title": "共道星印",
+          "x": 0.36,
+          "y": -0.28,
+          "z": 0.3,
+          "units": 0,
+          "outputs": [
+            "g3"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.82,
+          "y": 0.34,
+          "z": -0.26,
+          "units": 2,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.77,
+          "y": 0.04,
+          "z": -0.02,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日"
+        },
+        {
+          "id": "g3",
+          "kind": "goal",
+          "title": "终点 Ⅲ",
+          "x": 0.77,
+          "y": -0.28,
+          "z": 0.3,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        },
+        {
+          "id": "h",
+          "kind": "socket",
+          "title": "桥臂 H",
+          "x": 0.43,
+          "y": 0.34,
+          "z": -0.27,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "H -135°",
+              "outputs": [
+                "i"
+              ],
+              "angle": -135
+            },
+            {
+              "kind": "turn",
+              "name": "H -45°",
+              "outputs": [
+                "i"
+              ],
+              "angle": -45
+            },
+            {
+              "kind": "turn",
+              "name": "H 45°",
+              "outputs": [
+                "i"
+              ],
+              "angle": 45
+            },
+            {
+              "kind": "turn",
+              "name": "H 135°",
+              "outputs": [
+                "i"
+              ],
+              "angle": 135
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "i",
+          "kind": "socket",
+          "title": "桥臂 I",
+          "x": 0.6,
+          "y": 0.34,
+          "z": -0.27,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "I -45°",
+              "outputs": [
+                "g1"
+              ],
+              "angle": -45
+            },
+            {
+              "kind": "turn",
+              "name": "I 45°",
+              "outputs": [
+                "g1"
+              ],
+              "angle": 45
+            },
+            {
+              "kind": "turn",
+              "name": "I 135°",
+              "outputs": [
+                "g1"
+              ],
+              "angle": 135
+            },
+            {
+              "kind": "turn",
+              "name": "I -135°",
+              "outputs": [
+                "g1"
+              ],
+              "angle": -135
+            }
+          ],
+          "rune": "",
+          "code": ""
+        }
+      ],
+      "reference": [
+        2,
+        3,
+        1,
+        2,
+        1,
+        3,
+        1
+      ],
+      "hints": [
+        "先将双桥臂向中央合拢，再为只能去星锁的 C 保留共道。",
+        "正面看起来相接仍可能撞上前层暗石，需向后层合拢；棱镜B需把3格分为2与1。",
+        "桥臂H选45°、I选-45°；A给B3格C1格，B给D2格E1格，C共道，D月印。"
+      ],
+      "links": [
+        {
+          "a": "d",
+          "b": "e",
+          "map": [
+            0,
+            2,
+            1
+          ]
+        }
+      ],
+      "relic": {
+        "kind": "parallax",
+        "title": "双桥接合 · 空间中的缺口",
+        "angle": 45,
+        "instruction": "两轴相距48cm，桥臂各长约34cm。前后两侧都可能合拢，但前层暗石会阻光；转到侧面找可行接合。",
+        "discovery": "桥臂 H 与 I 的真实末端必须对接并避开前层暗石；接通后，仍须满足三格分光与共道争用。"
+      },
+      "spatial": {
+        "kind": "bridge",
+        "controls": [
+          "h",
+          "i"
+        ],
+        "speed": 0.3
+      },
+      "curriculum": "空间挑战",
+      "objective": "用真实桥臂接合绕过暗石，再完成共道分光。",
+      "question": "桥口合拢就一定通光吗？"
+    },
+    {
+      "id": "box_16",
+      "title": "倒映的密语",
+      "lesson": "倒序镜反转整串符文；它不替换单个印记。",
+      "turns": 1,
+      "splitters": 0,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.77,
+          "y": 0,
+          "z": 0,
+          "units": 1,
+          "outputs": [
+            "rm"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rm",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.51,
+          "y": 0.12,
+          "z": -0.14,
+          "units": 0,
+          "outputs": [
+            "rs"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "rs",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.25,
+          "y": 0.16,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": 0.02,
+          "y": 0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "直接送锁",
+              "outputs": [
+                "g"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "经过倒序镜",
+              "outputs": [
+                "rv"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rv",
+          "kind": "relay",
+          "title": "倒序镜",
+          "x": 0.32,
+          "y": -0.24,
+          "z": 0.2,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "g",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.72,
+          "y": 0.1,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星月"
+        }
+      ],
+      "reference": [
+        2
+      ],
+      "hints": [
+        "比较能源带来的印记与终点顺序。",
+        "当前月→星，目标星→月。需要反转整串。",
+        "选择倒序镜。"
+      ],
+      "tutorial": "reverse",
+      "tutorialNode": "rv",
+      "tutorialSocket": "a",
+      "curriculum": "规则学习",
+      "objective": "亲手验证倒序镜会反转整串印记。",
+      "question": "倒序改变能量，还是改变先后顺序？"
+    },
+    {
+      "id": "box_17",
+      "title": "镜前与镜后",
+      "lesson": "反转时机不同，追加后的整串也不同。",
+      "turns": 1,
+      "splitters": 0,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.77,
+          "y": 0,
+          "z": 0,
+          "units": 1,
+          "outputs": [
+            "rm"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rm",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.54,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [
+            "rs"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "rs",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.31,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.08,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "先加日再倒序",
+              "outputs": [
+                "d1"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "先倒序再加日",
+              "outputs": [
+                "r2"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "d1",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.13,
+          "y": 0.26,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [
+            "r1"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "r1",
+          "kind": "relay",
+          "title": "倒序镜",
+          "x": 0.4,
+          "y": 0.26,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "r2",
+          "kind": "relay",
+          "title": "倒序镜",
+          "x": 0.13,
+          "y": -0.25,
+          "z": 0.22,
+          "units": 0,
+          "outputs": [
+            "d2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "d2",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.4,
+          "y": -0.25,
+          "z": 0.22,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "g",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.76,
+          "y": 0,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日星月"
+        }
+      ],
+      "reference": [
+        1
+      ],
+      "hints": [
+        "目标的第一个日，在原路线中应当最后加入。",
+        "整串月星日反转才是日星月。",
+        "先加日，再倒序。"
+      ],
+      "curriculum": "加工推理",
+      "objective": "比较追加与倒序的先后关系。",
+      "question": "把同一个日印放在镜前或镜后，得到的开头相同吗？"
+    },
+    {
+      "id": "box_18",
+      "title": "借镜还印",
+      "lesson": "镜子放在分流之前或之后，决定两路继承什么；同一接点不能再经过。",
+      "turns": 5,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.83,
+          "y": -0.05,
+          "z": 0,
+          "units": 2,
+          "outputs": [
+            "m"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "m",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.65,
+          "y": 0.14,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [
+            "st"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "st",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.45,
+          "y": 0.24,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [
+            "p"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "p",
+          "kind": "socket",
+          "title": "插槽 P",
+          "x": -0.25,
+          "y": 0.12,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "先分流",
+              "outputs": [
+                "a"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "先借镜",
+              "outputs": [
+                "rv"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rv",
+          "kind": "relay",
+          "title": "共用倒序镜",
+          "x": -0.07,
+          "y": 0.38,
+          "z": -0.32,
+          "units": 0,
+          "outputs": [
+            "h"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "d",
+          "kind": "socket",
+          "title": "插槽 D",
+          "x": 0.21,
+          "y": 0.35,
+          "z": -0.3,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "送往分流台",
+              "outputs": [
+                "a"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "直接送上锁",
+              "outputs": [
+                "g1"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "等分台 A",
+          "x": -0.03,
+          "y": -0.04,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "分给 B / C",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": 0.27,
+          "y": 0.11,
+          "z": -0.1,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "返回共用镜",
+              "outputs": [
+                "rv"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "直送上锁",
+              "outputs": [
+                "g1"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": 0.23,
+          "y": -0.29,
+          "z": 0.23,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "月换日",
+              "outputs": [
+                "cv"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "星换日",
+              "outputs": [
+                "bad"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "cv",
+          "kind": "relay",
+          "title": "月换日",
+          "x": 0.5,
+          "y": -0.32,
+          "z": 0.27,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "月",
+          "swapTo": "日"
+        },
+        {
+          "id": "bad",
+          "kind": "relay",
+          "title": "星换日",
+          "x": 0.48,
+          "y": -0.09,
+          "z": 0.13,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "星",
+          "swapTo": "日"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.8,
+          "y": 0.25,
+          "z": -0.16,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星月"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.8,
+          "y": -0.25,
+          "z": 0.23,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星日"
+        },
+        {
+          "id": "h",
+          "kind": "socket",
+          "title": "反射镜 H",
+          "x": 0.08,
+          "y": 0.43,
+          "z": -0.31,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "法线 0°",
+              "outputs": [
+                "d"
+              ],
+              "angle": 0
+            },
+            {
+              "kind": "turn",
+              "name": "法线 -45°",
+              "outputs": [
+                "d"
+              ],
+              "angle": -45
+            },
+            {
+              "kind": "turn",
+              "name": "法线 45°",
+              "outputs": [
+                "d"
+              ],
+              "angle": 45
+            },
+            {
+              "kind": "turn",
+              "name": "法线 90°",
+              "outputs": [
+                "d"
+              ],
+              "angle": 90
+            }
+          ],
+          "rune": "",
+          "code": ""
+        }
+      ],
+      "reference": [
+        2,
+        1,
+        1,
+        2,
+        1,
+        2
+      ],
+      "hints": [
+        "先让反射光命中水晶；两把锁又都需要星开头，应在分流前借镜。",
+        "镜面法线平分入射与反射关系；分流后再反转只能修正一路。",
+        "反射镜H法线选-45°；P先借镜，D送分流台，A等分，B直送上锁，C末月换日。"
+      ],
+      "relic": {
+        "kind": "mirror",
+        "title": "镜面寻路 · 真实反射",
+        "angle": 180,
+        "instruction": "光从左向右入射。转动镜面，让反射束穿过后方水晶；然后推理借镜与分流的先后顺序。",
+        "discovery": "镜面方向决定反射命中，倒序镜则改变整串符文；两路都需要以星开头，因此先处理再分流。"
+      },
+      "spatial": {
+        "kind": "mirror",
+        "controls": [
+          "h"
+        ],
+        "speed": 0.3
+      },
+      "curriculum": "空间挑战",
+      "objective": "让真实反射命中，再决定共用镜放在哪里。",
+      "question": "两路都需要改变开头，应该在分流前还是之后处理？"
+    },
+    {
+      "id": "box_19",
+      "title": "退去的尾音",
+      "lesson": "退印台移除最后一个符文；空白印记不能继续退印。",
+      "turns": 1,
+      "splitters": 0,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.75,
+          "y": 0,
+          "z": 0,
+          "units": 1,
+          "outputs": [
+            "m"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "m",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.48,
+          "y": 0.1,
+          "z": -0.1,
+          "units": 0,
+          "outputs": [
+            "s1"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "s1",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.21,
+          "y": 0.1,
+          "z": -0.1,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": 0.05,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "直接送锁",
+              "outputs": [
+                "g"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "经过退印台",
+              "outputs": [
+                "er"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "er",
+          "kind": "relay",
+          "title": "退印台",
+          "x": 0.34,
+          "y": -0.23,
+          "z": 0.2,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "g",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.71,
+          "y": 0.1,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        }
+      ],
+      "reference": [
+        2
+      ],
+      "hints": [
+        "能量没有错，锁印多了末尾的星。",
+        "退印只移除最后一枚。",
+        "选择退印路线。"
+      ],
+      "tutorial": "erase",
+      "tutorialNode": "er",
+      "tutorialSocket": "a",
+      "curriculum": "规则学习",
+      "objective": "验证退印只删末尾，空白不能继续退印。",
+      "question": "想保留哪个符文，就必须先让谁处在末尾？"
+    },
+    {
+      "id": "box_20",
+      "title": "留下中间的星",
+      "lesson": "从锁印倒推每一步留下什么；不能直接删除开头或中间。",
+      "turns": 3,
+      "splitters": 0,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.84,
+          "y": 0,
+          "z": 0,
+          "units": 1,
+          "outputs": [
+            "m"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "m",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.68,
+          "y": 0.21,
+          "z": -0.17,
+          "units": 0,
+          "outputs": [
+            "s1"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "s1",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.49,
+          "y": 0.29,
+          "z": -0.17,
+          "units": 0,
+          "outputs": [
+            "u"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "u",
+          "kind": "relay",
+          "title": "日印",
+          "x": -0.3,
+          "y": 0.29,
+          "z": -0.17,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "步骤 A",
+          "x": -0.51,
+          "y": -0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "先退印",
+              "outputs": [
+                "er0"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "先倒序",
+              "outputs": [
+                "rv0"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "er0",
+          "kind": "relay",
+          "title": "前段退印",
+          "x": -0.28,
+          "y": 0.04,
+          "z": -0.2,
+          "units": 0,
+          "outputs": [
+            "door"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "rv0",
+          "kind": "relay",
+          "title": "前段倒序",
+          "x": -0.28,
+          "y": -0.3,
+          "z": 0.22,
+          "units": 0,
+          "outputs": [
+            "door"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "door",
+          "kind": "relay",
+          "title": "月星刻门",
+          "x": -0.02,
+          "y": 0.25,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [
+            "b"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "月星"
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "步骤 B",
+          "x": 0.07,
+          "y": 0.01,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "中段退印",
+              "outputs": [
+                "er1"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "中段倒序",
+              "outputs": [
+                "rv"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "er1",
+          "kind": "relay",
+          "title": "中段退印",
+          "x": 0.28,
+          "y": 0.26,
+          "z": -0.2,
+          "units": 0,
+          "outputs": [
+            "c"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "rv",
+          "kind": "relay",
+          "title": "中段倒序",
+          "x": 0.27,
+          "y": -0.28,
+          "z": 0.23,
+          "units": 0,
+          "outputs": [
+            "c"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "步骤 C",
+          "x": 0.49,
+          "y": -0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "末段退印",
+              "outputs": [
+                "er2"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "末段倒序",
+              "outputs": [
+                "rv2"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "er2",
+          "kind": "relay",
+          "title": "末段退印",
+          "x": 0.68,
+          "y": 0.26,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "rv2",
+          "kind": "relay",
+          "title": "末段倒序",
+          "x": 0.68,
+          "y": -0.28,
+          "z": 0.23,
+          "units": 0,
+          "outputs": [
+            "g"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "g",
+          "kind": "goal",
+          "title": "终点",
+          "x": 0.85,
+          "y": 0.02,
+          "z": 0,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        }
+      ],
+      "reference": [
+        1,
+        2,
+        1
+      ],
+      "hints": [
+        "目标只留中间的星；月星门还要求第一步之后留下月→星。",
+        "先从刻门推断步骤A，再从单独星印倒推最后一次退印前必须是什么顺序。",
+        "A先退印，留下月星；B倒序得到星月；C再退印，留下星。"
+      ],
+      "curriculum": "迁移挑战",
+      "objective": "通过三步加工保留中间的星，并满足中途刻门。",
+      "question": "不能直接删开头，怎样让它变成末尾？"
+    },
+    {
+      "id": "box_21",
+      "title": "重写遗言",
+      "lesson": "棱镜、倒序、退印共同决定两路能量和口令。",
+      "turns": 2,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.79,
+          "y": 0,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "m"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "m",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.57,
+          "y": 0.03,
+          "z": 0,
+          "units": 0,
+          "outputs": [
+            "st"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "st",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.35,
+          "y": 0.03,
+          "z": 0,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "棱镜 A",
+          "x": -0.12,
+          "y": 0.03,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "上1下3",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                1,
+                3
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "上3下1",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                3,
+                1
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "均分",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "插槽 B",
+          "x": 0.12,
+          "y": 0.28,
+          "z": -0.22,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "退印后换月",
+              "outputs": [
+                "er"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "直送",
+              "outputs": [
+                "g1"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "er",
+          "kind": "relay",
+          "title": "退印台",
+          "x": 0.35,
+          "y": 0.34,
+          "z": -0.24,
+          "units": 0,
+          "outputs": [
+            "cv"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "cv",
+          "kind": "relay",
+          "title": "月换日",
+          "x": 0.56,
+          "y": 0.3,
+          "z": -0.24,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "月",
+          "swapTo": "日"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.8,
+          "y": 0.29,
+          "z": -0.24,
+          "units": 3,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日"
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "插槽 C",
+          "x": 0.12,
+          "y": -0.25,
+          "z": 0.2,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "先倒序",
+              "outputs": [
+                "rv"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "直接退印",
+              "outputs": [
+                "bad"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "rv",
+          "kind": "relay",
+          "title": "倒序镜",
+          "x": 0.35,
+          "y": -0.31,
+          "z": 0.22,
+          "units": 0,
+          "outputs": [
+            "er2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "er2",
+          "kind": "relay",
+          "title": "退印台",
+          "x": 0.57,
+          "y": -0.27,
+          "z": 0.22,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "bad",
+          "kind": "relay",
+          "title": "退印台",
+          "x": 0.4,
+          "y": -0.08,
+          "z": 0.08,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.8,
+          "y": -0.25,
+          "z": 0.2,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        }
+      ],
+      "reference": [
+        2,
+        1,
+        1
+      ],
+      "hints": [
+        "先分三格与一格，两路都继承月星。",
+        "上路删星再月换日；下路倒序后删月。",
+        "A上3下1，B退印再换日，C倒序再退印。"
+      ],
+      "curriculum": "综合检验",
+      "objective": "组合加工次序，为不同锁印保留不同结果。",
+      "question": "每条支路最后一次加工之前，应该留下什么？"
+    },
+    {
+      "id": "box_22",
+      "title": "同拍之约",
+      "lesson": "本章每段导轨1拍；短路等待，让两个终点同时收到光。",
+      "turns": 1,
+      "splitters": 1,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.72,
+          "y": 0,
+          "z": 0,
+          "units": 2,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "插槽 A",
+          "x": -0.42,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "分两路",
+              "outputs": [
+                "b",
+                "l"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "节拍阀 B",
+          "x": -0.1,
+          "y": 0.23,
+          "z": -0.16,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "等0拍",
+              "outputs": [
+                "g1"
+              ],
+              "delay": 0
+            },
+            {
+              "kind": "turn",
+              "name": "等1拍",
+              "outputs": [
+                "g1"
+              ],
+              "delay": 1
+            },
+            {
+              "kind": "turn",
+              "name": "等2拍",
+              "outputs": [
+                "g1"
+              ],
+              "delay": 2
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "l",
+          "kind": "relay",
+          "title": "长路Ⅰ",
+          "x": -0.1,
+          "y": -0.23,
+          "z": 0.16,
+          "units": 0,
+          "outputs": [
+            "l2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "l2",
+          "kind": "relay",
+          "title": "长路Ⅱ",
+          "x": 0.25,
+          "y": -0.23,
+          "z": 0.16,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.61,
+          "y": 0.23,
+          "z": -0.16,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.61,
+          "y": -0.23,
+          "z": 0.16,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        }
+      ],
+      "reference": [
+        1,
+        2
+      ],
+      "hints": [
+        "短路比长路少一段。",
+        "每段1拍，短路需要等待1拍。",
+        "B等1拍。"
+      ],
+      "tutorial": "sync",
+      "tutorialNode": "b",
+      "tutorialSocket": "b",
+      "syncWindow": 0.1,
+      "curriculum": "规则学习",
+      "objective": "暂停逐拍观察，比较路程和等待。",
+      "question": "早到的一路应补几拍，才能和另一边相遇？"
+    },
+    {
+      "id": "box_23",
+      "title": "三声回廊",
+      "lesson": "折返改变实际光路长度，不是停住等待；空间长度与联动决定三声能否同拍。",
+      "turns": 3,
+      "splitters": 2,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.83,
+          "y": 0,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "分流台 A",
+          "x": -0.57,
+          "y": 0,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "B / C 各2格",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B3 / C1",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                3,
+                1
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B1 / C3",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                1,
+                3
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "月路折返 B",
+          "x": -0.28,
+          "y": 0.34,
+          "z": -0.25,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "月路折返0段",
+              "outputs": [
+                "m"
+              ],
+              "delay": 0,
+              "loops": 0
+            },
+            {
+              "kind": "turn",
+              "name": "月路折返1段",
+              "outputs": [
+                "m"
+              ],
+              "delay": 0,
+              "loops": 1
+            },
+            {
+              "kind": "turn",
+              "name": "月路折返2段",
+              "outputs": [
+                "m"
+              ],
+              "delay": 0,
+              "loops": 2
+            },
+            {
+              "kind": "turn",
+              "name": "月路折返3段",
+              "outputs": [
+                "m"
+              ],
+              "delay": 0,
+              "loops": 3
+            },
+            {
+              "kind": "turn",
+              "name": "月路折返4段",
+              "outputs": [
+                "m"
+              ],
+              "delay": 0,
+              "loops": 4
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "分流台 C",
+          "x": -0.28,
+          "y": -0.12,
+          "z": 0.12,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "全部送 D",
+              "outputs": [
+                "d"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "D / E 各1格",
+              "outputs": [
+                "d",
+                "e"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部送 E",
+              "outputs": [
+                "e"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "d",
+          "kind": "socket",
+          "title": "星路折返 D",
+          "x": 0.01,
+          "y": 0.02,
+          "z": -0.03,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "星路折返0段",
+              "outputs": [
+                "st"
+              ],
+              "delay": 0,
+              "loops": 0
+            },
+            {
+              "kind": "turn",
+              "name": "星路折返1段",
+              "outputs": [
+                "st"
+              ],
+              "delay": 0,
+              "loops": 1
+            },
+            {
+              "kind": "turn",
+              "name": "星路折返2段",
+              "outputs": [
+                "st"
+              ],
+              "delay": 0,
+              "loops": 2
+            },
+            {
+              "kind": "turn",
+              "name": "星路折返3段",
+              "outputs": [
+                "st"
+              ],
+              "delay": 0,
+              "loops": 3
+            },
+            {
+              "kind": "turn",
+              "name": "星路折返4段",
+              "outputs": [
+                "st"
+              ],
+              "delay": 0,
+              "loops": 4
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "e",
+          "kind": "socket",
+          "title": "日路折返 E",
+          "x": 0.01,
+          "y": -0.33,
+          "z": 0.26,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "日路折返0段",
+              "outputs": [
+                "u"
+              ],
+              "delay": 0,
+              "loops": 0
+            },
+            {
+              "kind": "turn",
+              "name": "日路折返1段",
+              "outputs": [
+                "u"
+              ],
+              "delay": 0,
+              "loops": 1
+            },
+            {
+              "kind": "turn",
+              "name": "日路折返2段",
+              "outputs": [
+                "u"
+              ],
+              "delay": 0,
+              "loops": 2
+            },
+            {
+              "kind": "turn",
+              "name": "日路折返3段",
+              "outputs": [
+                "u"
+              ],
+              "delay": 0,
+              "loops": 3
+            },
+            {
+              "kind": "turn",
+              "name": "日路折返4段",
+              "outputs": [
+                "u"
+              ],
+              "delay": 0,
+              "loops": 4
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "m",
+          "kind": "relay",
+          "title": "月印",
+          "x": 0.3,
+          "y": 0.34,
+          "z": -0.25,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "st",
+          "kind": "relay",
+          "title": "星印",
+          "x": 0.34,
+          "y": 0.02,
+          "z": -0.03,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "u",
+          "kind": "relay",
+          "title": "日印",
+          "x": 0.24,
+          "y": -0.33,
+          "z": 0.26,
+          "units": 0,
+          "outputs": [
+            "rv"
+          ],
+          "choices": [],
+          "rune": "日",
+          "code": ""
+        },
+        {
+          "id": "rv",
+          "kind": "relay",
+          "title": "倒序镜",
+          "x": 0.49,
+          "y": -0.33,
+          "z": 0.26,
+          "units": 0,
+          "outputs": [
+            "g3"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.79,
+          "y": 0.34,
+          "z": -0.25,
+          "units": 2,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.79,
+          "y": 0.02,
+          "z": -0.03,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        },
+        {
+          "id": "g3",
+          "kind": "goal",
+          "title": "终点 Ⅲ",
+          "x": 0.79,
+          "y": -0.33,
+          "z": 0.26,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日"
+        }
+      ],
+      "reference": [
+        1,
+        4,
+        2,
+        3,
+        2
+      ],
+      "hints": [
+        "基础路程月4拍、星5拍、日6拍；月日展开段数合计4。",
+        "月路比日路短2拍，故需多展开2段；再让星路与它们同拍。",
+        "A均分、C再均分；月路展开3段、日路随动1段、星路2段，三路第7拍共鸣。"
+      ],
+      "links": [
+        {
+          "a": "b",
+          "b": "e",
+          "map": [
+            0,
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        }
+      ],
+      "syncWindow": 0.1,
+      "relic": {
+        "kind": "resonance",
+        "title": "折返共鸣 · 长度就是时间",
+        "angle": -45,
+        "instruction": "基础路程月4拍、星5拍、日6拍；每展开30cm折返就多走1拍。月、日两路的折返段数反向联动，合计4。",
+        "discovery": "月、星、日基础为4、5、6。月路要比日路多展开两段，且两者段数合计4，再补齐星路。"
+      },
+      "spatial": {
+        "kind": "path",
+        "controls": [
+          "b",
+          "d",
+          "e"
+        ],
+        "speed": 0.3
+      },
+      "curriculum": "空间挑战",
+      "objective": "把真实折返长度与月日反向联动一起推算。",
+      "question": "月日总段数固定，短路应比长路多展开几段？"
+    },
+    {
+      "id": "box_24",
+      "title": "终章 · 三钥共鸣",
+      "lesson": "先守恒，再决定三把钥匙的来路；联动既改变路由，也改变等待。",
+      "turns": 3,
+      "splitters": 2,
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "source",
+          "title": "能源",
+          "x": -0.84,
+          "y": -0.09,
+          "z": 0,
+          "units": 4,
+          "outputs": [
+            "m"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "m",
+          "kind": "relay",
+          "title": "月印",
+          "x": -0.66,
+          "y": 0.1,
+          "z": -0.15,
+          "units": 0,
+          "outputs": [
+            "st"
+          ],
+          "choices": [],
+          "rune": "月",
+          "code": ""
+        },
+        {
+          "id": "st",
+          "kind": "relay",
+          "title": "星印",
+          "x": -0.47,
+          "y": 0.23,
+          "z": -0.18,
+          "units": 0,
+          "outputs": [
+            "a"
+          ],
+          "choices": [],
+          "rune": "星",
+          "code": ""
+        },
+        {
+          "id": "a",
+          "kind": "socket",
+          "title": "棱镜 A",
+          "x": -0.29,
+          "y": -0.02,
+          "z": 0,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "split",
+              "name": "B3 / C1",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                3,
+                1
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B1 / C3",
+              "outputs": [
+                "b",
+                "c"
+              ],
+              "parts": [
+                1,
+                3
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "B2 / C2",
+              "outputs": [
+                "b",
+                "c"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "b",
+          "kind": "socket",
+          "title": "分流台 B",
+          "x": -0.07,
+          "y": 0.17,
+          "z": -0.12,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "全部送 D",
+              "outputs": [
+                "d"
+              ]
+            },
+            {
+              "kind": "split",
+              "name": "D / E 各1格",
+              "outputs": [
+                "d",
+                "e"
+              ]
+            },
+            {
+              "kind": "turn",
+              "name": "全部送 E",
+              "outputs": [
+                "e"
+              ]
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "c",
+          "kind": "socket",
+          "title": "节拍阀 C",
+          "x": 0.11,
+          "y": -0.32,
+          "z": 0.27,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "完整锁等0拍",
+              "outputs": [
+                "door"
+              ],
+              "delay": 0
+            },
+            {
+              "kind": "turn",
+              "name": "完整锁等1拍",
+              "outputs": [
+                "door"
+              ],
+              "delay": 1
+            },
+            {
+              "kind": "turn",
+              "name": "完整锁等2拍",
+              "outputs": [
+                "door"
+              ],
+              "delay": 2
+            },
+            {
+              "kind": "turn",
+              "name": "完整锁等3拍",
+              "outputs": [
+                "door"
+              ],
+              "delay": 3
+            },
+            {
+              "kind": "turn",
+              "name": "完整锁等4拍",
+              "outputs": [
+                "door"
+              ],
+              "delay": 4
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "d",
+          "kind": "socket",
+          "title": "节拍阀 D",
+          "x": 0.15,
+          "y": 0.36,
+          "z": -0.28,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "退印路等0拍",
+              "outputs": [
+                "er"
+              ],
+              "delay": 0
+            },
+            {
+              "kind": "turn",
+              "name": "退印路等1拍",
+              "outputs": [
+                "er"
+              ],
+              "delay": 1
+            },
+            {
+              "kind": "turn",
+              "name": "退印路等2拍",
+              "outputs": [
+                "er"
+              ],
+              "delay": 2
+            },
+            {
+              "kind": "turn",
+              "name": "倒序路等0拍",
+              "outputs": [
+                "rv"
+              ],
+              "delay": 0
+            },
+            {
+              "kind": "turn",
+              "name": "倒序路等1拍",
+              "outputs": [
+                "rv"
+              ],
+              "delay": 1
+            },
+            {
+              "kind": "turn",
+              "name": "倒序路等2拍",
+              "outputs": [
+                "rv"
+              ],
+              "delay": 2
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "e",
+          "kind": "socket",
+          "title": "节拍阀 E",
+          "x": 0.15,
+          "y": 0.02,
+          "z": -0.01,
+          "units": 0,
+          "outputs": [],
+          "choices": [
+            {
+              "kind": "turn",
+              "name": "倒序路等0拍",
+              "outputs": [
+                "rv"
+              ],
+              "delay": 0
+            },
+            {
+              "kind": "turn",
+              "name": "倒序路等1拍",
+              "outputs": [
+                "rv"
+              ],
+              "delay": 1
+            },
+            {
+              "kind": "turn",
+              "name": "倒序路等2拍",
+              "outputs": [
+                "rv"
+              ],
+              "delay": 2
+            },
+            {
+              "kind": "turn",
+              "name": "退印路等0拍",
+              "outputs": [
+                "er"
+              ],
+              "delay": 0
+            },
+            {
+              "kind": "turn",
+              "name": "退印路等1拍",
+              "outputs": [
+                "er"
+              ],
+              "delay": 1
+            },
+            {
+              "kind": "turn",
+              "name": "退印路等2拍",
+              "outputs": [
+                "er"
+              ],
+              "delay": 2
+            }
+          ],
+          "rune": "",
+          "code": ""
+        },
+        {
+          "id": "er",
+          "kind": "relay",
+          "title": "退印台",
+          "x": 0.37,
+          "y": 0.36,
+          "z": -0.28,
+          "units": 0,
+          "outputs": [
+            "cv"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "cv",
+          "kind": "relay",
+          "title": "月换日",
+          "x": 0.6,
+          "y": 0.36,
+          "z": -0.28,
+          "units": 0,
+          "outputs": [
+            "g1"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "swapFrom": "月",
+          "swapTo": "日"
+        },
+        {
+          "id": "rv",
+          "kind": "relay",
+          "title": "倒序镜",
+          "x": 0.37,
+          "y": 0.02,
+          "z": -0.01,
+          "units": 0,
+          "outputs": [
+            "er2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "reverse"
+        },
+        {
+          "id": "er2",
+          "kind": "relay",
+          "title": "退印台",
+          "x": 0.6,
+          "y": 0.02,
+          "z": -0.01,
+          "units": 0,
+          "outputs": [
+            "g3"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "operation": "erase"
+        },
+        {
+          "id": "door",
+          "kind": "relay",
+          "title": "月星门",
+          "x": 0.52,
+          "y": -0.32,
+          "z": 0.27,
+          "units": 0,
+          "outputs": [
+            "g2"
+          ],
+          "choices": [],
+          "rune": "",
+          "code": "",
+          "gate": "月星"
+        },
+        {
+          "id": "g1",
+          "kind": "goal",
+          "title": "终点 Ⅰ",
+          "x": 0.84,
+          "y": 0.36,
+          "z": -0.28,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "日"
+        },
+        {
+          "id": "g3",
+          "kind": "goal",
+          "title": "终点 Ⅱ",
+          "x": 0.84,
+          "y": 0.02,
+          "z": -0.01,
+          "units": 1,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "星"
+        },
+        {
+          "id": "g2",
+          "kind": "goal",
+          "title": "终点 Ⅲ",
+          "x": 0.84,
+          "y": -0.32,
+          "z": 0.27,
+          "units": 2,
+          "outputs": [],
+          "choices": [],
+          "rune": "",
+          "code": "月星"
+        }
+      ],
+      "reference": [
+        3,
+        2,
+        4,
+        2,
+        2
+      ],
+      "hints": [
+        "完整月星锁必须留2格，另外两格才能分别变成日和星。D/E联动，不可逐路独立调整。",
+        "两条加工路各8拍，完整锁6拍；加工路必须选择不同来路且等得一样，再让完整锁多等2拍。",
+        "A均分，B再均分；D退印路等1拍、E倒序路随动等1拍；C等3拍，三锁第9拍共鸣。"
+      ],
+      "links": [
+        {
+          "a": "d",
+          "b": "e",
+          "map": [
+            0,
+            3,
+            2,
+            1,
+            5,
+            6,
+            4
+          ]
+        }
+      ],
+      "syncWindow": 0.1,
+      "curriculum": "终章检验",
+      "objective": "综合能量、符文加工、联动与三路同拍。",
+      "question": "先锁定能量需求，再推加工顺序，最后怎样补齐拍数？"
+    }
+  ]
+}
