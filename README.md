@@ -4,6 +4,13 @@
 
 沿用既有GitHub组织ultimetamr，专用私有仓库：https://github.com/ultimetamr/OrbitalLoom 。其他应用仓库未改动。
 
+## 仓库分支
+
+- `main`：发布文案、宣传美术和提交资料。
+- [`unity-2022-baseline`](https://github.com/ultimetamr/OrbitalLoom/tree/unity-2022-baseline)：当前Unity2022.3开发源工程备份，含Assets、Packages、ProjectSettings和Tools。6038份源文件已逐一核对大小与SHA-256，清单位于该分支的technical/source-baseline-manifest.json。
+
+两个分支均不是Vibe Lab可构建的Unity6 Gradle提交工程。后续正式构建提交应使用新的完整40位commit。私有仓库如供平台构建访问，需要按平台指引配置其提供的Deploy Key公钥。
+
 ## 直接使用
 
 - docs/01-发布表单填写稿.md：名称、简介、版本说明、标签。
