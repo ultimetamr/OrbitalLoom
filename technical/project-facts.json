@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-05",
+  "appName": "Orbital Loom 星轨织机",
+  "package": "com.orbitalloom.puzzle",
+  "versionName": "0.9.8",
+  "versionCode": 25,
+  "unityVersion": "2022.3.62f3c1",
+  "backend": "IL2CPP",
+  "abi": [
+    "arm64-v8a"
+  ],
+  "picoXR": "6.1.1",
+  "spatialAdapter": "6.1.0",
+  "mode": "Full Space / 独立MR空间",
+  "levelCount": 24,
+  "verifiedInput": "手柄射线＋扳机",
+  "formalReleaseBuild": false,
+  "vibeLabBuildReady": false,
+  "automatedEvidence": {
+    "editModePassed": 144,
+    "editModeFailed": 0,
+    "UILevelFlowPassed": 24,
+    "highlightOnlyTutorialFirstAttemptPassed": 10
+  },
+  "deviceEvidence": "0.9.8/code25前台运行，主菜单ready，24关加载，box_03输入收到；本轮真人通关未确认",
+  "testApk": {
+    "file": "local-testing/OrbitalLoom-0.9.8-DEVELOPMENT.apk",
+    "bytes": 57694517,
+    "sha256": "9d39945ea9e378064e1339c1fbdf519cfa4881d9b3d6cc7306b218848a809564"
+  },
+  "remaining": [
+    "Unity6迁移",
+    "Gradle导出与IL2CPP预编译",
+    "release终验",
+    "正式真机截图",
+    "真人流程与性能验收",
+    "发行主体与隐私信息核对"
+  ]
+}

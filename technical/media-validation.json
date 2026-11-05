@@ -1,0 +1,26 @@
+[
+  {
+    "file": "media/Icon-1024x1024.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 140437,
+    "withinSizeLimit": true
+  },
+  {
+    "file": "media/Icon-original.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 50288,
+    "withinSizeLimit": true
+  },
+  {
+    "file": "media/Poster-2560x1440.jpg",
+    "format": "JPEG",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 767907,
+    "withinSizeLimit": true
+  }
+]

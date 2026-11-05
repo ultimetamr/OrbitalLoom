@@ -1,0 +1,13 @@
+/local-testing/
+/GITHUB-DELIVERY.json
+/FILE-MANIFEST.json
+*.keystore
+*.jks
+*.p12
+*.pem
+*.key
+*.apk
+*.aab
+local.properties
+.DS_Store
+Thumbs.db
