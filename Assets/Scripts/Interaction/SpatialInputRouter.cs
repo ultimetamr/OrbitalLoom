@@ -13,6 +13,7 @@ namespace OrbitalLoom.Interaction
     {
         public Camera editorCamera;
         public EnergyBoxView boxView;
+        public DirectPuzzleInteraction direct;
         private GameManager game;
         private LoomTarget hovered;
         private InputAction primarySpatial,secondarySpatial;
@@ -43,9 +44,24 @@ namespace OrbitalLoom.Interaction
             if (game == null || game.Paused) return;
             var state = context.ReadValue<SpatialInputState>();
             if (state.interactionId < 0 || state.interactionId > 1 || state.phase == Phase.None) return;
-            if (!Finite(state.currentPosition)) { Release(state.interactionId, true, Vector3.zero); pressedTaps.Remove(state.interactionId); return; }
+            if (!Finite(state.currentPosition))
+            {
+                if (direct != null && direct.Grabbing && direct.Pointer == state.interactionId) direct.Cancel();
+                Release(state.interactionId, true, Vector3.zero); pressedTaps.Remove(state.interactionId); return;
+            }
             var target = state.targetObject == null ? null : state.targetObject.GetComponentInParent<LoomTarget>();
             if (hovered != target) { hovered?.Hover(false); hovered = target; hovered?.Hover(true); }
+            if (state.type != InteractionType.Touch && direct != null)
+            {
+                if (direct.Grabbing && direct.Pointer == state.interactionId)
+                {
+                    if (state.phase == Phase.Ended || state.phase == Phase.Canceled)
+                        direct.End(state.interactionId, state.phase == Phase.Canceled, state.currentPosition, state.deviceRotation);
+                    else if (state.phase == Phase.Moved) direct.Move(state.interactionId, state.currentPosition, state.deviceRotation);
+                    return;
+                }
+                if (state.phase == Phase.Began && direct.Handles(target) && direct.Begin(state.interactionId, target, state.currentPosition, state.deviceRotation)) return;
+            }
             Dispatch(state.interactionId, state.phase, target, state.currentPosition);
         }
         private void Update()
@@ -82,7 +98,8 @@ namespace OrbitalLoom.Interaction
             else if(phase==Phase.Ended||phase==Phase.Canceled){if(phase==Phase.Ended&&captures.TryGetValue(id,out var last))last?.Drag(point);pressedTaps.Remove(id);captures.Remove(id);}
         }
         private void Release(int id,bool cancel,Vector3 point){captures.Remove(id);pressedTaps.Remove(id);}
-        public void CancelAll(){captures.Clear();hovered?.Hover(false);hovered=null;}
+        public void CancelUiCaptures(){captures.Clear();hovered?.Hover(false);hovered=null;}
+        public void CancelAll(){CancelUiCaptures();pressedTaps.Clear();direct?.Cancel();}
         private static bool Finite(Vector3 p)=>Data.Point3.IsFinite(p.x)&&Data.Point3.IsFinite(p.y)&&Data.Point3.IsFinite(p.z);
 #if UNITY_EDITOR
         private void EditorMouse()
@@ -91,8 +108,18 @@ namespace OrbitalLoom.Interaction
             var ray=editorCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             bool hit=Physics.Raycast(ray,out var found,20,~(1<<2));var target=hit?found.collider.GetComponentInParent<LoomTarget>():null;
             Vector3 point=hit?found.point:ray.GetPoint(2);
-            if(captures.Count>0){var plane=new Plane(editorCamera.transform.forward,boxView.transform.position);if(plane.Raycast(ray,out float distance))point=ray.GetPoint(distance);}
+            if(captures.Count>0||direct!=null&&direct.Grabbing){var plane=new Plane(editorCamera.transform.forward,boxView.transform.position);if(plane.Raycast(ray,out float distance))point=ray.GetPoint(distance);}
             if(hovered!=target){hovered?.Hover(false);hovered=target;hovered?.Hover(true);}
+            if(direct!=null)
+            {
+                if(direct.Grabbing)
+                {
+                    if(Mouse.current.leftButton.wasReleasedThisFrame)direct.End(-100,false,point,editorCamera.transform.rotation);
+                    else if(Mouse.current.leftButton.isPressed)direct.Move(-100,point,editorCamera.transform.rotation);
+                    return;
+                }
+                if(Mouse.current.leftButton.wasPressedThisFrame&&direct.Handles(target)&&direct.Begin(-100,target,point,editorCamera.transform.rotation))return;
+            }
             if(Mouse.current.leftButton.wasPressedThisFrame)Dispatch(-100,Phase.Began,target,point);
             else if(Mouse.current.leftButton.wasReleasedThisFrame)Dispatch(-100,Phase.Ended,target,point);
             else if(Mouse.current.leftButton.isPressed)Dispatch(-100,Phase.Moved,target,point);

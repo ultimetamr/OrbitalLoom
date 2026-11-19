@@ -1,4 +1,4 @@
-﻿using Plattar;
+using Plattar;
 using System.Collections.Generic;
 using System.IO;
 using Unity.Formats.USD;
@@ -39,7 +39,7 @@ namespace ByteDance.PICO.SpatialAdapter.Exporter.Editor
                 idComponent = prefab.AddComponent<PrefabId>();
             }
 
-            idComponent.PrefabIdentifier = prefab.GetInstanceID();
+            idComponent.PrefabIdentifier = prefab.GetEntityId().GetHashCode();
 
             if (prefab.GetComponent<SpatialAdapterGameObjectTracker>() == null)
             {

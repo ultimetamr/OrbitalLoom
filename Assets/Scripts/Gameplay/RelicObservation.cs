@@ -30,6 +30,7 @@ namespace OrbitalLoom.Gameplay
         public bool Aligned=>Mathf.Abs(Mathf.DeltaAngle(Angle,Clue.angle))<=7.5f;
         public RelicObservation(RelicClue clue){Clue=clue;clue.Validate();}
         public void Rotate(int direction){Angle=Mathf.DeltaAngle(0,Angle+Math.Sign(direction)*15);}
+        public void SetAngle(float angle){if(Data.Point3.IsFinite(angle))Angle=Mathf.DeltaAngle(0,angle);}
         public bool Record(bool textAccess=false)
         {
             if(!textAccess&&!Aligned)return false;

@@ -6,6 +6,9 @@
 /Builds/
 /.vs/
 /.idea/
+/.vsconfig
+__pycache__/
+*.pyc
 *.csproj
 *.sln
 *.slnx

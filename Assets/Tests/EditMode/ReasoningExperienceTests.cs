@@ -81,8 +81,11 @@ namespace OrbitalLoom.Tests
         {
             var l=Level(2);var b=l.nodes.First(n=>n.id=="b");b.choices=b.choices.Where(c=>c.kind=="turn").ToArray();l.reference[1]=1;
             var s=new EnergyBoxSession(l,true);s.BeginTutorial();s.Examine("g1");s.Examine("rs");
-            s.Select(0);Assert.That(s.Tutorial.Button,Is.EqualTo("装等分件"));s.Install("split");s.Select(1);
-            Assert.That(s.Tutorial.Target,Is.Null,"Installing focuses only its button");Assert.That(s.Tutorial.Button,Is.EqualTo("装转向件"));
+            s.Select(0);Assert.That(s.Tutorial.Piece,Is.EqualTo("split"));
+            Assert.That(s.Tutorial.Button,Is.Null,"Installation highlights the physical piece only");
+            s.Install("split");s.Select(1);
+            Assert.That(s.Tutorial.Target,Is.Null,"Installing focuses only its crystal");
+            Assert.That(s.Tutorial.Button,Is.Null);Assert.That(s.Tutorial.Piece,Is.EqualTo("turn"));
         }
     }
 }

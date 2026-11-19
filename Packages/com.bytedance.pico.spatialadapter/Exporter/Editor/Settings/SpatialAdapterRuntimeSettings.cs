@@ -132,7 +132,7 @@ namespace ByteDance.PICO.SpatialAdapter.Exporter.Editor
 
             if (property != null && property.propertyType == SerializedPropertyType.ObjectReference)
             {
-                return property.objectReferenceValue == null && property.objectReferenceInstanceIDValue != 0;
+                return property.objectReferenceValue == null && property.objectReferenceEntityIdValue != EntityId.None;
             }
 
             return false;
@@ -149,9 +149,9 @@ namespace ByteDance.PICO.SpatialAdapter.Exporter.Editor
             }
 
             // Broken: managed reference resolves to null but instance id is non-zero.
-            if (property.objectReferenceValue == null && property.objectReferenceInstanceIDValue != 0)
+            if (property.objectReferenceValue == null && property.objectReferenceEntityIdValue != EntityId.None)
             {
-                property.objectReferenceInstanceIDValue = 0;
+                property.objectReferenceEntityIdValue = EntityId.None;
                 serializedObject.ApplyModifiedPropertiesWithoutUndo();
             }
         }

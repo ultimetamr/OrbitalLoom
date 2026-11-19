@@ -23,6 +23,7 @@ namespace OrbitalLoom.Gameplay
             int selected=session.Selected;
             if(selected<0){routeTarget=runes?"a":level.tutorialSocket;return 12;}
             var socket=session.Sockets[selected];var piece=session.Installed(selected);
+            routeTarget=socket.id;
             int expected=level.reference[selected];
             if(expected==0)return NextSocket(session);
             var wanted=socket.choices[expected-1];
@@ -73,23 +74,24 @@ namespace OrbitalLoom.Gameplay
             Stage=session.Choice(0)==session.Level.reference[0]?4:3;
         }
         // Each step owns one focus: a scene node OR a dock button.
-        public string Target => Active&&Started?(Stage==11?level.tutorialNode:Stage==12?routeTarget:Stage==8?"g1":Stage==9?"rs":Stage==1?"a":null):null;
-        public string Button => !Active?null:!Started?"开始教学":Stage==13?installCaption:Stage==2?splitter?"装等分件":"装转向件":Stage==3||Stage==14?"出口 ›":Stage==4?"开始":Stage==6?"目标":null;
+        public string Target => Active&&Started?(Stage==11?level.tutorialNode:Stage==12?routeTarget:Stage==8?"g1":Stage==9?"rs":Stage==1||Stage==3?"a":Stage==14?routeTarget:null):null;
+        public string Button => !Active?null:!Started?"开始教学":Stage==4?"开始":Stage==6?"目标":null;
+        public string Piece => Active&&Started?(Stage==2?(splitter?"split":"turn"):Stage==13?installKind:null):null;
         private string MechanicIntro => level==null?"":level.tutorial=="prism"?"棱镜按出口标记分配格数，可以是3＋1，不能凭方向猜。":level.tutorial=="reverse"?"倒序镜反转整串印记；月→星变成星→月。":level.tutorial=="erase"?"退印台只移除最后一枚印记；空白会被阻断。":level.tutorial=="sync"?"每段1拍；阀可等待。计拍低音与水晶音帮助听出同拍，静音看拍数也能解。":null;
         private string LessonName => !Advanced?"操作教学":level.tutorial=="prism"?"比例棱镜":level.tutorial=="reverse"?"倒序镜":level.tutorial=="erase"?"退印台":level.tutorial=="sync"?"同步节拍":level.tutorial=="gate"?"条件门":level.tutorial=="swap"?"换印器":"联动插槽";
         public string Heading => Stage==8?"符文教学 · 读终点锁印":Stage==9?"符文教学 · 检查路径印记":LessonName+" · "+(Stage==0?"先看目标":Stage==11?"观察机关":Stage==12?"选择路线":Stage==13||Stage==2?"安装元件":Stage==1?"选中插槽":Stage==3||Stage==14?"调整出口":Stage==4?"验证你的路线":Stage==5?"观察光的去向":"读懂失败，再调整");
         public string Instruction => Advanced&&Stage==0?(MechanicIntro!=null?MechanicIntro+"\n点开始教学，先读发光机关。":level.tutorial=="gate"?"条件门会检查完整符文顺序，不满足就阻断。\n点“开始教学”，先读门的条件。":level.tutorial=="swap"?"换印器只替换末尾符文，前面的印记保留。\n点“开始教学”，先了解替换规则。":"带相同联动标记的两处会一起改变。\n装件、转向和取回均同步；先读联动关系。"):
             Stage==11?(level.tutorial=="link"?"点击发光的联动插槽，查看与谁联动。":"射线点击发光的新机关，读清条件与作用。"):
-            Stage==12?"点击发光插槽。结合上方目标，决定从哪条路线送光。":
-            Stage==13?"点发光的“"+installCaption+"”，把元件装入当前插槽。":
-            Stage==14?"点发光的“出口 ›”，把当前插槽切到“"+routeName+"”。":
+            Stage==12?"选中发光插槽。结合上方目标，决定从哪条路线送光。":
+            Stage==13?"捏住下方发光晶体，拖到已选插槽；吸附环出现后松手。需要："+installCaption.Replace("装","")+"。":
+            Stage==14?"抓住发光机关，转动手腕或沿圆周拖动；松手吸附到“"+routeName+"”。":
             Stage==4?"点发光的“开始”，让星光沿你接好的路线前进。":
             Stage==8?"射线点击发光的终点，查看它要求的符文。":Stage==9?"点击发光的“星印”，查看经过它会留下什么印记。":Stage==0?
             runes?"终点开始带有符文锁。光经过紫色检查点会留下印记。\n能量和符文顺序都要吻合；先学会读线索。":
             splitter?"金色能源有 2 格；两个蓝色终点各要 1 格。\n等分件把 2 格拆成 1＋1。准备好后点“开始教学”。":"金色是能源，蓝色是目标，红色是封闭断口。\n把 1 格光送到蓝色终点。准备好后点“开始教学”。":
-            Stage==1?"用手柄射线对准闪亮的“插槽 A”，扣一下扳机。":
-            Stage==2?splitter?"插槽已选中。点下方发光的“装等分件”。":"插槽已选中。点下方发光的“装转向件”。":
-            Stage==3?"当前出口通向红色断口。点“出口 ›”，让亮线通向蓝色终点。":
+            Stage==1?"用手指点选发光插槽 A；或用手柄射线扣一下扳机。":
+            Stage==2?splitter?"捏住下方紫色分流晶体，拖进插槽 A；吸附环出现后松手。":"捏住下方青色转向晶体，拖进插槽 A；吸附环出现后松手。":
+            Stage==3?"抓住发光插槽，旋转手腕或沿圆周拖动一档，松手；让出口朝向蓝色终点。":
             Stage==5?"这一刻只观察光点沿亮线前进，等待本次结果。":
             "点发光的“目标”，查看本次运行最先出错的原因。";
         public bool Allows(string action)

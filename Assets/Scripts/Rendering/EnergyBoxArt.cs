@@ -19,8 +19,8 @@ namespace OrbitalLoom.Rendering
         private bool completed;
         private float solvedAge;
         public float CelebrationAge=>solvedAge;
-        private static readonly Color Case=LoomPalette.Hex("334F53"),Face=LoomPalette.Hex("172F38"),
-            Rim=LoomPalette.Hex("BFA875");
+        private static readonly Color Case=LoomPalette.Hex("293A54"),Face=LoomPalette.Hex("16263F"),
+            Rim=LoomPalette.Hex("DDC490");
 
         public void Bind(EnergyBoxView owner,EnergyBoxSession current)
         {

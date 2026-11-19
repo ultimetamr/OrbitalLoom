@@ -38,6 +38,8 @@ namespace OrbitalLoom.Rendering
         {game.BoxSession?.Select(index);OrbitalLoom.Audio.LoomAudio.Instance?.Play("select",Vector3.zero);}
         public void RotateView(int direction)
         {yaw=Mathf.Clamp(yaw+direction*20,-60,60);assembly.localRotation=Quaternion.Euler(0,yaw,0);}
+        public void SetYaw(float angle)
+        {if(!Data.Point3.IsFinite(angle))return;yaw=Mathf.Clamp(angle,-75,75);assembly.localRotation=Quaternion.Euler(0,yaw,0);}
         public void Front(){yaw=0;assembly.localRotation=Quaternion.identity;}
         public void Refresh()
         {
@@ -60,6 +62,9 @@ namespace OrbitalLoom.Rendering
                 string text=n.operation=="reverse"?"倒序镜":n.operation=="erase"?"退印台":n.kind=="socket"&&n.choices.Any(c=>c.parts.Length>0)?n.title+" · "+(choice==null?"未装":choice.name):n.kind=="socket"&&n.choices.Any(c=>c.delay>0)?n.title+" · "+(choice==null?"未装":choice.name):n.gate.Length>0?"门 / "+EnergyBoxSolver.RuneText(n.gate):n.swapFrom.Length>0?"换 "+n.swapFrom+"→"+n.swapTo:
                     n.rune.Length>0?n.rune+"印":n.kind=="socket"?n.title.Replace("插槽 ","")+(link!=null?" ↔"+(link.a==n.id?link.b:link.a).ToUpperInvariant():"")+(choice==null?" · 空":" · "+(choice.kind=="split"?"等分":"转向")):n.title+(n.kind=="source"?" · "+n.units+"格":n.kind=="goal"?" · "+n.units+"格"+(n.code.Length>0?"\n锁 "+EnergyBoxSolver.RuneText(n.code):""):"");
                 if(session.Level.spatial?.Controls(n.id)==true)text=n.title+" · "+(choice==null?"空":session.Level.spatial.kind=="path"?choice.loops+"段":choice.angle.ToString("0")+"°");
+                // Short socket IDs keep dense puzzles legible; full names and
+                // current routes are shown in the selected-object dock.
+                if(slot>=0)text=n.id.ToUpperInvariant()+(choice==null?" · 空":" · "+(choice.kind=="split"?"分流":"转向"));
                 bool clue=n.kind!="socket"&&n.kind!="blocked";
                 nodes[i].Bind(n.id,n.Position,text,ColorFor(n),choice?.kind=="split"?"splitter":null,n.kind=="socket"?TargetKind.BoxSocket:TargetKind.BoxClue);
                 nodes[i].glyph.localPosition=Vector3.zero;nodes[i].glyph.localScale=Vector3.one*.035f;
@@ -70,6 +75,8 @@ namespace OrbitalLoom.Rendering
                     LoomPalette.SetColor(nodes[i].glyph.GetComponent<Renderer>(),LoomPalette.Hex("102432"));
                 }
                 nodes[i].target.controlIndex=slot;
+                foreach(string detail in new[]{"Outer engraved collar","Moonstone bearing","Grip visual"})
+                {var decoration=nodes[i].transform.Find(detail);if(decoration!=null)decoration.gameObject.SetActive(slot>=0);}
                 foreach(var collider in nodes[i].GetComponentsInChildren<Collider>(true))
                     collider.enabled=(slot>=0||clue)&&(collider.gameObject==nodes[i].gameObject||collider.gameObject==nodes[i].core.gameObject);
                 nodes[i].gameObject.layer=nodes[i].core.gameObject.layer=slot>=0||clue?0:2;

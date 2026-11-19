@@ -16,6 +16,19 @@ namespace OrbitalLoom.Rendering
         private EnergyBoxSession session;
         private int usedBars,usedCrystals;
         private readonly Vector3[][] previewPaths=new Vector3[3][];
+        public void Preview(int socket,int choice)
+        {
+            if(session==null||choice<=0)return;
+            var state=session.Snapshot();state[socket]=choice;
+            var rig=session.Level.spatial;var c=session.Sockets[socket].choices[choice-1];
+            int control=Array.IndexOf(rig.controls,session.Sockets[socket].id);
+            if(rig.kind=="mirror")
+            {mirror.localRotation=Quaternion.Euler(0,c.angle,0);mirrorFrame.localRotation=mirror.localRotation;}
+            else if(rig.kind=="bridge"&&control>=0)
+            {var a=SpatialMechanism.Pivot(control);var b=SpatialMechanism.Tip(control,c.angle);var t=bars[control*2];t.localPosition=(a+b)*.5f;t.localRotation=Quaternion.FromToRotation(Vector3.right,b-a);t.localScale=new Vector3(Vector3.Distance(a,b),.020f,.020f);crystals[control*2+1].localPosition=b;}
+            else if(rig.kind=="path"&&control>=0)
+            {var path=SpatialMechanism.Path(control,c.loops);for(int i=1;i<path.Length;i++){var t=bars[control*3+i-1];t.localPosition=(path[i-1]+path[i])*.5f;t.localRotation=Quaternion.FromToRotation(Vector3.right,path[i]-path[i-1]);t.localScale=new Vector3(Mathf.Max(.001f,Vector3.Distance(path[i-1],path[i])),.011f,.011f);}}
+        }
         public void Bind(EnergyBoxSession current,bool visible)
         {
             session=current;gameObject.SetActive(visible&&current?.Level.spatial!=null);

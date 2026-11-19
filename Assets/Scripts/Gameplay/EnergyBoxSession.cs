@@ -301,6 +301,7 @@ namespace OrbitalLoom.Gameplay
         public void DismissSpatialLesson(){SpatialLessonDismissed=true;Publish();}
         public EnergyBoxSession(EnergyBoxLevel level,bool tutorial=false){Level=level;level.Validate();Sockets=level.nodes.Where(n=>n.kind=="socket").ToArray();state=new int[Sockets.Length];Message=level.lesson;Tutorial=new BoxTutorial(tutorial,level.id=="box_02",level.id=="box_03",level);Observation=level.relic==null?null:new RelicObservation(level.relic);}
         public void RotateRelic(int direction){if(Observation==null)return;Observation.Rotate(direction);Publish();}
+        public void SetRelicAngle(float angle){if(Observation==null)return;Observation.SetAngle(angle);Publish();}
         public void RecordRelic(bool textAccess=false)
         {
             if(Observation==null||!Observation.Record(textAccess))return;

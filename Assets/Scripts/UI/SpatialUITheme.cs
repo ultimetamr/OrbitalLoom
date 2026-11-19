@@ -7,10 +7,10 @@ namespace OrbitalLoom.UI
     /// Native text owns its backing so exported mesh tint cannot wash out type.</summary>
     public static class SpatialUITheme
     {
-        public static readonly Color Panel=LoomPalette.Hex("14262C"), Surface=LoomPalette.Hex("1B343D"),
-            Hover=LoomPalette.Hex("29434D"), Pressed=LoomPalette.Hex("304851"),
-            Selected=LoomPalette.Hex("25434B"), Disabled=LoomPalette.Hex("15252D"),
-            Ink=LoomPalette.Hex("EDF4EC"), Secondary=LoomPalette.Hex("BCD0CC"),
+        public static readonly Color Panel=LoomPalette.Hex("101B30"), Surface=LoomPalette.Hex("1B2C43"),
+            Hover=LoomPalette.Hex("29465E"), Pressed=LoomPalette.Hex("354E68"),
+            Selected=LoomPalette.Hex("254354"), Disabled=LoomPalette.Hex("152136"),
+            Ink=LoomPalette.Hex("F2F5FC"), Secondary=LoomPalette.Hex("B9CDD9"),
             DisabledInk=LoomPalette.Hex("B9C9C9"), Accent=LoomPalette.Hex("E8CF94"), Edge=LoomPalette.Hex("56767B"), ButtonAccent=LoomPalette.Hex("E8CA89"), Error=LoomPalette.Hex("FFA7A2");
         public static Color Fill(bool enabled,bool primary,bool selected,bool hover,bool pressed)
             =>!enabled?Disabled:pressed?Pressed:selected||primary?Selected:hover?Hover:Surface;

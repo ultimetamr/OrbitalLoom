@@ -32,7 +32,7 @@ namespace OrbitalLoom.UI
         public void ShowToast(string message){toast.Text=BoxWrap(message,36);toast.TextColor=SpatialUITheme.Ink;toast.BackgroundColor=SpatialUITheme.Panel;toast.BackgroundCornerRadius=16;toastUntil=Time.unscaledTime+4;toast.gameObject.SetActive(true);}
         private void Build()
         {
-            if(game==null)return;beatLabel=null;shownBeat=-1;game.UiOverlayOpen=overlay!=null;toast.gameObject.SetActive(false);input.CancelAll();
+            if(game==null)return;beatLabel=null;shownBeat=-1;game.UiOverlayOpen=overlay!=null;toast.gameObject.SetActive(false);input.CancelUiCaptures();
             foreach(var b in buttons)b.gameObject.SetActive(false);foreach(var l in labels)l.gameObject.SetActive(false);foreach(var s in sliders)s.gameObject.SetActive(false);
             foreach(var panel in panels)panel.gameObject.SetActive(false);buttonIndex=labelIndex=sliderIndex=panelIndex=0;
             bool menu=game.State==GameState.MainMenu&&overlay==null;menuSculpture.gameObject.SetActive(menu);input.boxView?.Refresh();

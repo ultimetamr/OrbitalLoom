@@ -10,6 +10,10 @@ namespace OrbitalLoom.Tests
         private static EnergyBoxLevel Level(int index)=>EnergyBoxCampaign.Parse(Resources.Load<TextAsset>("EnergyBoxes").text).levels[index];
         private static void Focus(BoxTutorial guide,string node,string button)
         {
+            if(button=="装转向件"||button=="装等分件"||button=="装棱镜")
+            {Assert.That(guide.Piece,Is.EqualTo(button=="装转向件"?"turn":"split"));Assert.That(guide.Target,Is.Null);Assert.That(guide.Button,Is.Null);return;}
+            if(button=="出口 ›")
+            {Assert.That(guide.Target,Is.Not.Null);Assert.That(guide.Piece,Is.Null);Assert.That(guide.Button,Is.Null);return;}
             Assert.That(guide.Target,Is.EqualTo(node));Assert.That(guide.Button,Is.EqualTo(button));
             Assert.That(guide.Target==null||guide.Button==null,Is.True,"Never guide a node and button simultaneously");
         }
@@ -70,7 +74,11 @@ namespace OrbitalLoom.Tests
                 Assert.That(guide.Target==null||guide.Button==null,Is.True);
                 if(s.Running){s.Tick(100);continue;}
                 string target=guide.Target,button=guide.Button;
-                if(target!=null)
+                if(guide.Piece!=null)
+                {Assert.That(OrbitalLoom.Interaction.DirectPuzzleActions.Install(s,s.Selected,guide.Piece),Is.True);}
+                else if(guide.Stage==3||guide.Stage==14)
+                {int next=OrbitalLoom.Interaction.DirectPuzzleActions.RotateChoice(s,s.Selected,s.Choice(s.Selected),1);Assert.That(OrbitalLoom.Interaction.DirectPuzzleActions.Rotate(s,s.Selected,next),Is.True);}
+                else if(target!=null)
                 {
                     int socket=System.Array.FindIndex(s.Sockets,n=>n.id==target);
                     if(socket>=0)s.Select(socket);else s.Examine(target);

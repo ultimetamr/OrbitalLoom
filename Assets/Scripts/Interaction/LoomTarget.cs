@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OrbitalLoom.Interaction
 {
-    public enum TargetKind { Node, ControlPoint, Mechanic, Obstacle, Button, Slider, Workspace, RingHandle, RingPort, RingBase, RingBridge, BoxSocket, BoxClue }
+    public enum TargetKind { Node, ControlPoint, Mechanic, Obstacle, Button, Slider, Workspace, RingHandle, RingPort, RingBase, RingBridge, BoxSocket, BoxClue, BoxPiece, BoxViewGrip, BoxSpatialHandle, RelicGrip }
     public sealed class LoomTarget : MonoBehaviour
     {
         public TargetKind kind;

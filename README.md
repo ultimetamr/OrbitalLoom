@@ -1,44 +1,36 @@
 # Orbital Loom 星轨织机
 
-面向 PICO 的 3D 混合现实解谜游戏。玩家在神秘遗迹与水晶构成的立体星仪中，推理能量分配、符文顺序、光路方向与同步时序，逐步解开 24 道机关谜题。
+面向 PICO 的独立 MR 空间解谜游戏。观察神秘遗迹与水晶，推理能量分配、符文顺序、光路方向和同步时序，解开四个星域的 24 道谜题。
 
-当前版本：**0.9.8 / versionCode 25**。采用 Full Space 独立 MR 空间，已验证的操作方式为手柄射线与扳机。包含主菜单、章节选关、分步教学、提示、撤销、进度保存与节拍演出。
+当前版本 **1.0.0 / versionCode 28**，Unity **6000.6.8f1**，Android ARM64 / IL2CPP。SDK 与嵌入依赖保存在 `Packages/`。应用包名为 `com.orbitalloom.puzzle`。
 
-## 工程环境
+## 本版变化
 
-- Unity **2022.3.62f3c1**，C#，Android / ARM64 / IL2CPP。
-- PICO XR SDK **6.1.1**、Spatial Adapter **6.1.0**；已嵌入的依赖保存在 `Packages/`。
-- 启动场景：`Assets/Scenes/OrbitalLoom.unity`。
+- 直接抓取水晶并拖入插槽，吸附环出现后松手安装。
+- 抓住已安装机关，转动手腕或沿圆周拖动，松手提交档位；支持撤销。
+- 空间展品与谜题增加直接操作握环，按钮辅助操作保留在“更多 → 辅助操作”。
+- 精简游玩 UI、缩短节点标签、优化蓝石与水晶外观，移除重复装饰。
+- 教学按当前一步高亮插槽、水晶或开始按钮。
 
-## 获取与打开
+## 打开与构建
 
-1. 本仓库为公开仓库，可直接访问或克隆，无需登录 GitHub。
-2. 克隆本仓库，使用 Unity Hub 添加克隆目录，以指定的 Unity 版本打开。
-3. 安装该 Unity 版本对应的 Android Build Support、SDK/NDK 和 OpenJDK，等待首次导入及 Unity 注册表依赖解析。
-4. 打开启动场景，通过 Unity Test Runner 的 EditMode 页运行测试；Android 构建入口为 Unity 的 Build Settings。
-5. 真机操作需要兼容的 PICO 设备与已授权的 USB 调试连接。首次导入、构建和真机验收仍取决于本机工具链与设备环境。
+1. 使用 Unity Hub 和 Unity 6000.6.8f1 打开仓库根目录，安装配套 Android Build Support / SDK / NDK / OpenJDK。
+2. 启动场景为 `Assets/Scenes/OrbitalLoom.unity`。已保存场景包含原生导出所需对象，不需重新生成旧版场景。
+3. EditMode 测试入口为 `OrbitalLoom.Editor.OrbitalLoomTestRunner.Run`；直接操作回归入口为 `OrbitalLoom.Editor.OrbitalLoomDirectSmoke.Run`。
+4. 导出入口为 `OrbitalLoom.Editor.OrbitalLoomDirectBuild.Export`，默认导出到 `Builds/AndroidExport-1.0.0`。可用环境变量 `ORBITAL_LOOM_EXPORT_DIR` 指定其他空目录。
+5. 执行 `python Tools/package_android.py <导出目录> <Unity AndroidPlayer目录>`，补齐星轨启动图标并使用配套 Gradle 构建 APK。
 
-## 目录
+## 验证与限制
 
-- `Assets/Scripts/`：核心状态、关卡数据、玩法、机关、输入、渲染、UI、窗口与音频代码。
-- `Assets/Tests/EditMode/`：规则、求解、教学、界面与节拍相关测试源码。
-- `Assets/Scenes/`、`Assets/Resources/`、`Assets/StreamingAssets/`：场景、资源和关卡配置。
-- `Packages/`：包清单、锁文件及已嵌入的第三方 SDK 与依赖。
-- `ProjectSettings/`：Unity 工程配置。
-- `Tools/`：关卡与音频等内容制作脚本。
-- `docs/`、`media/`：发布文案、操作与审核说明、隐私草稿、图标和宣传海报。
-- `technical/source-baseline-manifest.json`：源工程 6,038 个文件的大小及 SHA-256 清单。
+本版 171 项 EditMode 测试通过；24 关使用抓取、移动、旋转、松手入口回归通过；Release APK 构建、签名与 zipalign 检查通过。构建号 28 已安装到 PICO，用户确认菜单可见，设备日志收到晶体抓取和节点点击。
 
-## 分支与验证范围
+完整的真机手势放置、旋转手感和性能仍待验收，上述结果不代表平台评审通过。部分 PICO 预编译库存在 16KB ELF 对齐警告，未宣称全面兼容。
 
-`main` 包含完整开发源工程和发布资料；`unity-2022-baseline` 保留最初的 Unity 2022.3 源工程备份。源文件已与作者工程逐一比对。此次上传未改动玩法或升级 SDK，也未重新进行运行测试。
+## 源码与提交工程
 
-已归档的开发验证记录为 144 项 EditMode 测试通过、24 关界面流程通过；不能将这些记录等同于本次克隆后的构建、真机完整验收或官方评级。
+- 本仓库：完整 Unity C# 源码、场景、资源、SDK、测试与制作工具。
+- Vibe Lab 提交工程：https://github.com/ultimetamr/OrbitalLoom-VibeLab 。GitHub + Commit 表单使用该导出仓库及对应版本 commit。
+- `unity-2022-baseline` 分支和 `technical/source-baseline-manifest.json` 为历史归档，不描述当前 Unity 6 文件集合。
+- `docs/`、`media/`、`reference-editor/` 中旧版文案、图片及演示脚本为历史材料；当前变化和验证以 `docs/09-1.0.0更新与验证.md` 为准。
 
-当前是 Unity 开发工程，**不是 Vibe Lab 所需的 Unity 6 独立 Android Gradle 导出工程**，不能将本次源码 commit 直接作为平台可构建应用版本。正式提交的剩余事项见 `docs/05-提交状态与下一步.md`。
-
-## 资源与隐私
-
-未上传 Unity 缓存、临时文件、本地用户设置、设备日志、用户存档、账号凭据或签名私钥。第三方 SDK 与素材遵循各自许可证，本仓库不额外授予第三方授权。
-
-海报为 AI 宣传插画；`reference-editor/` 为历史 Editor 参考图，不能当作最终真机截图。发行者身份与隐私草稿中的待确认字段需在正式提交前核对。
+未上传 Unity 缓存、用户存档、设备原始日志、账号凭据、签名私钥或 APK。第三方 SDK 与素材保留各自许可；宣传插画不可作为真机截图。

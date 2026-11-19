@@ -1,4 +1,4 @@
-﻿
+
 using UnityEditor;
 using ByteDance.PICO.SpatialAdapter.Exporter.Editor.ShaderGraph;
 using UnityEngine;
@@ -31,7 +31,7 @@ namespace ByteDance.PICO.SpatialAdapter.Exporter.Editor
                 return true;
             }
 
-            int shaderId = shader.GetInstanceID();
+            int shaderId = shader.GetEntityId().GetHashCode();
             AddExportedPath(shaderId, exportedPath);
             
             if (!isAssetDirty)

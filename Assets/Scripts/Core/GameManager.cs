@@ -78,14 +78,14 @@ namespace OrbitalLoom.Core
             if(!Ready||index<0||index>=BoxCampaign.levels.Length)return;
             if(BoxSession!=null)BoxSession.Changed-=OnBoxChanged;
             var level=BoxCampaign.levels[index];bool teaching=index<3||level.tutorial.Length>0;
-            BoxLevelIndex=index;BoxSession=new EnergyBoxSession(level,teaching&&(forceTutorial||!Settings.seenTutorials.Contains("box-guide-095-"+index)));
+            BoxLevelIndex=index;BoxSession=new EnergyBoxSession(level,teaching&&(forceTutorial||!Settings.seenTutorials.Contains("box-guide-100-"+index)));
             RelicIntroRequested=level.relic!=null&&(forceTutorial||!Settings.seenTutorials.Contains("relic-guide-094-"+level.id));
             BoxSession.Changed+=OnBoxChanged;resultSaved=false;Transition(GameState.LevelPlaying);
             Debug.Log($"[Orbital Loom] Energy box ready: {level.id}, sockets={BoxSession.Sockets.Length}");
         }
         private void OnBoxChanged()
         {
-            Activity();var guide=BoxSession.Tutorial;string key="box-guide-095-"+BoxLevelIndex;
+            Activity();var guide=BoxSession.Tutorial;string key="box-guide-100-"+BoxLevelIndex;
             string relicKey="relic-guide-094-"+BoxSession.Level.id;
             if(BoxSession.Observation?.Found==true&&(BoxSession.Level.spatial==null||BoxSession.SpatialLessonCompleted)&&!Settings.seenTutorials.Contains(relicKey))
             {Settings.seenTutorials=Settings.seenTutorials.Concat(new[]{relicKey}).ToArray();ApplySettings();}

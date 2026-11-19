@@ -9,56 +9,58 @@ namespace OrbitalLoom.UI
         private int boxPage,boxRulePage,previewIndex;
         private void BoxPlaying()
         {
-            var box=game.BoxSession;bool edit=!box.Running&&!box.Solved;int selected=box.Selected;
-            var piece=selected<0?null:box.Installed(selected);var guide=box.Tutorial;
-            bool teaching=guide.Active;
-            Panel(0,.575f,1.30f,.26f);
-            var metadata=Text("ORBITAL LOOM     /     "+(game.BoxLevelIndex+1).ToString("00")+" / "+game.BoxCampaign.levels.Length.ToString("00")+"     ·     余转 "+(box.Level.turns-box.Used("turn"))+" / 分 "+(box.Level.splitters-box.Used("split")),0,.68f,1.3f,.04f,13,SpatialUITheme.Secondary);
-            if(box.Level.syncWindow>0&&box.Running)beatLabel=metadata;
-            Text(box.Solved?"机关解开 · "+box.Level.title:box.Level.title,0,.585f,1.2f,.065f,27,box.Solved?SpatialUITheme.Accent:SpatialUITheme.Ink);
-            Text((box.Level.syncWindow>0?"同拍目标   ":"目标   ")+box.GoalSummary,0,.49f,1.35f,.055f,15,SpatialUITheme.Secondary);
-            // Keep the whole manipulation dock outside the three-dimensional graph.
-            string selection=selected<0?"先点机关上的插槽":box.Sockets[selected].title+"  /  "+(piece==null?"空插槽":piece.name);
-            Panel(0,-.67f,1.30f,.49f);
-            Text(BoxWrap(teaching?guide.Instruction:box.Running?(box.ReviewingFailure?"首错复盘 · 已定格，可逐段或继续播放":box.Paused?"已暂停 · 可逐段检查":"跟随光点观察能量与符文"):box.Solved?"能量与锁印全部吻合":selection,40),0,-.475f,1.3f,.075f,16,SpatialUITheme.Ink);
-            if(teaching&&!guide.Started)
+            var box=game.BoxSession;var guide=box.Tutorial;bool edit=!box.Running&&!box.Solved;
+            Panel(0,.59f,1.22f,.22f);
+            Text("O R B I T A L   L O O M     /     "+(game.BoxLevelIndex+1).ToString("00")+" — 24",0,.665f,1.2f,.04f,12,SpatialUITheme.Accent);
+            Text(box.Level.title,0,.585f,1.15f,.06f,25);
+            Text(box.GoalSummary,0,.505f,1.25f,.05f,14,SpatialUITheme.Secondary);
+            string instruction=guide.Active?guide.Instruction:box.Running?"观察星光 · 可暂停并逐段检查":box.Solved?"遗迹已苏醒 · 所有目标均满足":"捏住晶体拖入插槽 · 抓住机关转动 · 松手吸附档位";
+            Panel(0,-.73f,1.50f,.32f);
+            Text(BoxWrap(instruction,39),0,-.655f,1.27f,.105f,15);
+            if(guide.Active&&!guide.Started)
             {
-                Button("开始教学",-.18f,-.62f,.30f,box.BeginTutorial,true);
-                Button("跳过教学",.18f,-.62f,.30f,box.SkipTutorial);
+                Button("开始教学",-.19f,-.79f,.31f,box.BeginTutorial,true,height:.095f);
+                Button("跳过教学",.19f,-.79f,.31f,box.SkipTutorial,height:.095f);
             }
             else if(box.Running)
             {
-                Button(box.Paused?"继续":"暂停",-.23f,-.59f,.25f,box.TogglePause);
-                Button("下一段",0,-.59f,.25f,box.Step);
-                Button("停止",.23f,-.59f,.25f,box.Stop);
+                Button(box.Paused?"继续":"暂停",-.25f,-.79f,.23f,box.TogglePause,height:.095f);
+                Button("下一段",0,-.79f,.23f,box.Step,height:.095f);
+                Button("停止",.25f,-.79f,.23f,box.Stop,height:.095f);
             }
-            else if(box.Solved)
-            {
-                Button(game.BoxLevelIndex==game.BoxCampaign.levels.Length-1?"完成挑战":"下一关",0,-.59f,.40f,game.NextLevel,true);
-            }
+            else if(box.Solved)Button("下一关",0,-.79f,.38f,game.NextLevel,true,height:.095f);
             else
             {
-                bool hasTurn=selected>=0&&box.Sockets[selected].choices.Any(c=>c.kind=="turn");
-                bool hasSplit=selected>=0&&box.Sockets[selected].choices.Any(c=>c.kind=="split");
-                Button("装转向件",-.38f,-.59f,.22f,()=>box.Install("turn"),enabled:guide.Allows("turn")&&edit&&hasTurn&&(piece?.kind=="turn"||box.Used("turn")<box.Level.turns));buttons[buttonIndex-1].SetSelected(piece?.kind=="turn");
-                Button(selected>=0&&box.Sockets[selected].choices.Any(c=>c.parts.Length>0)?"装棱镜":"装等分件",-.19f,-.59f,.22f,()=>box.Install("split"),enabled:guide.Allows("split")&&edit&&hasSplit&&(piece?.kind=="split"||box.Used("split")<box.Level.splitters));buttons[buttonIndex-1].SetSelected(piece?.kind=="split");
-                Button("出口 ‹",.035f,-.59f,.15f,()=>box.Rotate(-1),enabled:guide.Allows("rotate")&&(!teaching||guide.Stage!=3&&guide.Stage!=14)&&edit&&piece!=null&&box.Sockets[selected].choices.Count(c=>c.kind==piece.kind)>1);
-                Button("出口 ›",.18f,-.59f,.15f,()=>box.Rotate(1),enabled:guide.Allows("rotate")&&edit&&piece!=null&&box.Sockets[selected].choices.Count(c=>c.kind==piece.kind)>1);
-                Button("取回",.35f,-.59f,.17f,box.Remove,enabled:guide.Allows("remove")&&edit&&piece!=null);
+                Button("撤销",-.39f,-.79f,.19f,game.Undo,enabled:guide.Allows("undo")&&box.UndoAvailable>0,height:.095f);
+                Button("开始",-.13f,-.79f,.24f,box.Test,enabled:edit&&guide.Allows("test"),height:.095f);
+                Button("目标",.13f,-.79f,.19f,()=>OpenOverlay("box-goals"),height:.095f);
+                Button("更多",.39f,-.79f,.19f,()=>OpenOverlay("box-more"),height:.095f);
             }
-            string message=teaching?guide.Stage==0?"教学可随时跳过，也可在“更多”中重学":guide.Stage==12&&box.Inspected!=null?box.Message:guide.Heading+" · 完成当前一步后继续":box.Message;
-            Text(BoxWrap(message,42),0,-.70f,1.35f,.105f,14,box.Result!=null&&!box.Running&&!box.Result.Complete?SpatialUITheme.Error:SpatialUITheme.Secondary);
-            Button("撤销",teaching?-.30f:-.38f,-.83f,.20f,game.Undo,enabled:guide.Allows("undo")&&!box.Running&&box.UndoAvailable>0,height:.09f);
-            // Test is a momentary command. Persistent primary/selected styling
-            // made it look pressed even while disabled or after a completed test.
-            Button("开始",teaching?-.10f:-.19f,-.83f,.23f,()=>{box.Test();},false,edit&&guide.Allows("test"),.09f);
-            if(!teaching)Button("提示 "+(3-box.Hints),0,-.83f,.19f,()=>{game.Hint();OpenOverlay("box-hint");},enabled:edit&&box.Hints<3,height:.09f);
-            Button("目标",teaching?.13f:.19f,-.83f,.19f,()=>OpenOverlay("box-goals"),height:.09f);
-            Button("更多",teaching?.33f:.38f,-.83f,.19f,()=>OpenOverlay("box-more"),height:.09f);
-            Button("转视角 ‹",-.51f,.02f,.16f,()=>input.boxView.RotateView(-1),height:.085f);
-            Button("转视角 ›",.51f,.02f,.16f,()=>input.boxView.RotateView(1),height:.085f);
-            if(box.Observation!=null)Button("空间机关",.51f,-.15f,.16f,()=>OpenOverlay("box-relic"),height:.10f);
-            for(int i=0;i<buttonIndex;i++)buttons[i].SetTutorialFocus(teaching,buttons[i].Caption==guide.Button);
+            if(!guide.Active&&!box.Running&&!box.Solved)
+                Text(box.Selected<0?"青晶 / 转向      紫晶 / 分流":box.Sockets[box.Selected].title+" · "+(box.Installed(box.Selected)?.name??"等待放入晶体"),0,-.46f,1.05f,.05f,13,SpatialUITheme.Secondary);
+            if(!box.Running&&!box.Solved)
+            {
+                if(box.Level.turns>0)Text("转向晶体",-.48f,.17f,.22f,.04f,12,SpatialUITheme.Secondary);
+                if(box.Level.splitters>0)Text("分流晶体",-.48f,-.19f,.22f,.04f,12,SpatialUITheme.Secondary);
+            }
+            if(box.Observation!=null)Button("遗迹线索",.55f,.28f,.19f,()=>OpenOverlay("box-relic"),height:.085f);
+            if(box.Level.syncWindow>0&&box.Running)beatLabel=Text("",0,-.48f,1.2f,.05f,14,SpatialUITheme.Accent);
+            for(int i=0;i<buttonIndex;i++)buttons[i].SetTutorialFocus(guide.Active,buttons[i].Caption==guide.Button);
+        }
+        private bool AssistedControls()
+        {
+            if(overlay!="box-assist")return false;
+            var box=game.BoxSession;int selected=box.Selected;
+            Back(()=>OpenOverlay("box-more"));Text("辅助操作",0,.44f,1.2f,.08f,27);
+            Text("手部疲劳时可使用这些等效操作",0,.31f,1.25f,.06f,16,SpatialUITheme.Secondary);
+            Text(selected<0?"先回到机关选中一个插槽":box.Sockets[selected].title,0,.18f,1.2f,.06f,19);
+            bool edit=selected>=0&&!box.Running&&!box.Solved;
+            Button("装转向件",-.25f,.02f,.39f,()=>box.Install("turn"),enabled:edit&&box.Tutorial.Allows("turn"));
+            Button("装等分件",.25f,.02f,.39f,()=>box.Install("split"),enabled:edit&&box.Tutorial.Allows("split"));
+            Button("出口 ‹",-.25f,-.15f,.39f,()=>box.Rotate(-1),enabled:edit&&box.Tutorial.Allows("rotate"));
+            Button("出口 ›",.25f,-.15f,.39f,()=>box.Rotate(1),enabled:edit&&box.Tutorial.Allows("rotate"));
+            Button("取回",0,-.32f,.39f,box.Remove,enabled:edit&&box.Tutorial.Allows("remove"));
+            Button("回到机关",0,-.51f,.48f,()=>{overlay=null;Build();},true);return true;
         }
         // Native labels are meter-sized and do not share Unity TextMesh wrapping.
         // Explicit line breaks keep long clue/hint messages within the dock.
@@ -71,7 +73,7 @@ namespace OrbitalLoom.UI
         }
         private bool BoxOverlay()
         {
-            if(RelicOverlay())return true;
+            if(AssistedControls()||RelicOverlay())return true;
             if(overlay=="box-hint")
             {
                 var box=game.BoxSession;Back(()=>{overlay=null;Build();});
@@ -152,7 +154,7 @@ namespace OrbitalLoom.UI
                 Button("星域选关",.24f,.05f,.38f,()=>OpenOverlay("box-select"));
                 Button("正面视角",-.24f,-.13f,.38f,()=>{input.boxView.Front();overlay=null;Build();});
                 Button("重新居中",.24f,-.13f,.38f,()=>{windows.ResetContent();overlay=null;Build();});
-                Button("设置",-.24f,-.31f,.38f,game.OpenSettings);
+                Button("辅助操作",-.24f,-.31f,.38f,()=>OpenOverlay("box-assist"));
                 Button("主菜单",.24f,-.31f,.38f,game.MainMenu);
                 Button("机关规则",-.24f,-.49f,.38f,()=>OpenOverlay("box-help"));
                 Button(game.BoxSession.Tutorial.Active?"跳过本段教学":"重学教学",.24f,-.49f,.38f,()=>{overlay=null;if(game.BoxSession.Tutorial.Active)game.BoxSession.SkipTutorial();else game.StartBox(game.BoxSession.Level.spatial!=null?game.BoxLevelIndex:game.BoxLevelIndex>=21?21:game.BoxLevelIndex>=18?18:game.BoxLevelIndex>=15?15:game.BoxLevelIndex>=12?12:game.BoxLevelIndex>=10?10:game.BoxLevelIndex>=8?8:game.BoxLevelIndex>=6?6:game.BoxLevelIndex<3?game.BoxLevelIndex:2,true);Build();});
